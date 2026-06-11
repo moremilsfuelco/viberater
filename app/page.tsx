@@ -8,6 +8,7 @@ export default function Home() {
   const featured = reviews[0];
   const spotlight = founders[0];
   const featuredArticle = articles[0];
+  const hasFeaturedArticle = Boolean(featuredArticle?.body?.trim());
   const tools = ["Lovable", "Claude Code", "Bolt", "Cursor", "Replit", "Supabase"];
 
   return (
@@ -37,7 +38,7 @@ export default function Home() {
               </div>
               <div className="mt-8 grid max-w-2xl gap-3 text-sm text-paper/[0.68] sm:grid-cols-3">
                 <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">{reviews.length}</strong>Launch reviews</div>
-                <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">8-part</strong>Score rubric</div>
+                <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">8-part</strong>Vibe Score</div>
                 <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">0</strong>Invented revenue claims</div>
               </div>
               <div className="mt-8 max-w-2xl">
@@ -61,24 +62,30 @@ export default function Home() {
         </div>
       </section>
 
-      <Band>
-        <SectionHeader kicker="Featured Article" title="Founder-led, not content farm" body="Vibe Rater starts with one real founder article. The body is intentionally left for Morgan to paste manually after deployment." />
-        <Link href={`/articles/${featuredArticle.slug}`} className="block rounded-lg border border-line bg-white/[0.045] p-6 shadow-glow transition hover:-translate-y-1 hover:border-acid/[0.45]">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-pool">{featuredArticle.category} · {featuredArticle.date}</p>
-          <h2 className="mt-4 max-w-4xl font-display text-4xl font-black tracking-tight text-paper">{featuredArticle.title}</h2>
-          <p className="mt-4 text-sm leading-6 text-paper/[0.68]">By {featuredArticle.author}</p>
-        </Link>
-      </Band>
+      {hasFeaturedArticle ? (
+        <Band>
+          <SectionHeader kicker="Featured Article" title="Latest from Vibe Rater" />
+          <Link href={`/articles/${featuredArticle.slug}`} className="block rounded-lg border border-line bg-white/[0.045] p-6 shadow-glow transition hover:-translate-y-1 hover:border-acid/[0.45]">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-pool">{featuredArticle.category} · {featuredArticle.date}</p>
+            <h2 className="mt-4 max-w-4xl font-display text-4xl font-black tracking-tight text-paper">{featuredArticle.title}</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-6 text-paper/[0.68]">{featuredArticle.excerpt}</p>
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <p className="text-sm font-bold text-paper">By {featuredArticle.author}</p>
+              <span className="rounded-md bg-acid px-4 py-2 text-sm font-bold text-ink">Read Article</span>
+            </div>
+          </Link>
+        </Band>
+      ) : null}
 
       <Band>
-        <SectionHeader kicker="Launch Reviews" title="Real launch reviews from the current Vibe Rater build" body="The first reviews cover current Morgan Mitchell projects only, with no invented revenue, traction, or synthetic founder stories." />
+        <SectionHeader kicker="Launch Reviews" title="The first apps on the board" body="The launch set starts with Morgan Mitchell’s own projects. No made-up traction, no imaginary revenue, no pretend founder mythology." />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review) => <ReviewCard key={review.slug} review={review} />)}
         </div>
       </Band>
 
       <Band className="bg-white/[0.035]">
-        <SectionHeader kicker="Vibe Score" title="What the score means" body="A Vibe Score is an editorial rating across eight criteria: clarity, usefulness, design, retention, monetization, differentiation, trust, and founder-market fit. It is not a revenue claim or traction claim." />
+        <SectionHeader kicker="Vibe Score" title="What the score means" body="A Vibe Score is the quick read on whether an app is clear, useful, trustworthy, and worth opening again. It is not a revenue claim. It is not a victory lap." />
         <div className="grid gap-4 md:grid-cols-4">
           {topRated.map((review, index) => {
             const vibeScore = calculateVibeScore(review.scores);
@@ -112,7 +119,7 @@ export default function Home() {
             </div>
             <Link href={`/founders/${spotlight.slug}`} className="mt-6 inline-flex text-sm font-bold text-acid">Read profile</Link>
           </div>
-          <ShipLog items={["Removed non-real founder entries before launch.", "Swapped the old submit flow for the live Tally form.", "Reworked Vibe Rater around real projects currently being built.", "Kept the review framework honest: no invented revenue, traction, or founder stories."]} />
+          <ShipLog items={["Cut the pretend founder stuff before launch.", "Swapped the old submit flow for the live Tally form.", "Reworked Vibe Rater around real projects currently being built.", "Kept the reviews grounded: no invented revenue, traction, or founder stories."]} />
         </div>
       </Band>
 

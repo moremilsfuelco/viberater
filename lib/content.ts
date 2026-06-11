@@ -35,6 +35,7 @@ export type Review = {
   founderSlug: string;
   founderName: string;
   whatItDoes: string;
+  excerpt: string;
   stage: string;
   category: string;
   tools: string[];
@@ -55,6 +56,16 @@ export type Review = {
   distributionIdeas: string;
   founderAdvice: string;
   finalVerdict: string;
+  narrative: {
+    whatItIs: string;
+    firstImpression: string;
+    whatsWorking: string[];
+    whatsRisky: string[];
+    whatIdDoNext: string;
+    monetizationThoughts: string;
+    wouldIKeepBuildingIt: string;
+    finalVerdict: string;
+  };
   shipLogs: string[];
 };
 
@@ -169,6 +180,7 @@ export const reviews: Review[] = [
     founderSlug: "morgan-mitchell",
     founderName: "Morgan Mitchell",
     whatItDoes: "RaceIQ is training intelligence for runners who want smarter race prep.",
+    excerpt: "RaceIQ has the cleanest founder-problem fit in the launch set. Runners already obsess over race day. The product just has to earn enough trust to be useful instead of becoming another motivational quote dispenser with a stopwatch.",
     stage: "Currently being built",
     category: "AI fitness",
     tools: ["Expo", "Codex", "RevenueCat", "Supabase"],
@@ -193,11 +205,29 @@ export const reviews: Review[] = [
     },
     good: ["Clear user pain: runners want confidence before race day.", "Race prep creates a natural reason to return weekly.", "The product has room for a useful premium layer if recommendations are genuinely specific."],
     risk: ["Generic coaching advice would weaken trust quickly.", "Fitness guidance needs careful wording, boundaries, and product restraint."],
-    monetizationNotes: "RaceIQ has monetization potential if it helps runners make better training decisions, not just read AI-generated motivation.",
+    monetizationNotes: "RaceIQ has monetization potential if it helps runners make better training decisions, not just read generic motivation.",
     retentionNotes: "Retention depends on weekly planning, race countdowns, and whether runners trust the product enough to keep returning during a training block.",
-    distributionIdeas: "Start with runners training for a specific race distance, public build logs, race-prep content, and founder-led testing.",
+    distributionIdeas: "Start with runners training for a specific race distance, public build logs, race-prep content, and testing with actual runners.",
     founderAdvice: "Own one narrow race-prep promise first. Make RaceIQ excellent for one race distance before expanding the product surface.",
     finalVerdict: "RaceIQ is the strongest launch review because the pain is emotional, recurring, and tied to a clear outcome.",
+    narrative: {
+      whatItIs: "RaceIQ is a race-prep app for runners who want smarter training guidance before they show up at the start line and realize vibes are not a pacing strategy. The useful promise is simple: help a runner understand what to do next, why it matters, and whether their race plan is actually sane.",
+      firstImpression: "This is the strongest idea in the launch batch because the problem is already emotional. Runners do not need to be convinced that race day matters. They are already checking the weather ten days out, overthinking shoe choice, and pretending their left calf is totally fine. RaceIQ can meet them in that moment if it stays practical.",
+      whatsWorking: [
+        "The user has a real deadline. Race day gives the product urgency without needing fake scarcity or founder theater.",
+        "The weekly loop is obvious. Training plans, readiness checks, race countdowns, and post-run notes all give runners a reason to come back.",
+        "Morgan is close enough to the problem to know where the weird little anxieties live. That matters more than another generic AI coach voice telling people to believe in themselves."
+      ],
+      whatsRisky: [
+        "Fitness advice is trust-sensitive. The second RaceIQ sounds like it is making medical claims or overpromising performance, the whole thing gets shaky.",
+        "Generic AI encouragement would kill it. Runners can smell vague advice immediately, usually while wearing shoes that cost too much.",
+        "The app has to resist feature sprawl. Race prep is the wedge. Everything else can wait its turn."
+      ],
+      whatIdDoNext: "If it were mine, I would make RaceIQ embarrassingly good for one race scenario first. Pick a distance, pick a runner type, and make the product feel like it was built by someone who has actually panicked during a taper. I would also test every recommendation against real runner expectations before adding more surface area.",
+      monetizationThoughts: "There is a believable paid path here if the product helps runners make better decisions during a training block. Premium can work around smarter plan adjustments, race-specific prep, and check-ins that feel earned. It cannot just be a paywall around generic motivation. Nobody needs a subscription to be told to hydrate and stay consistent.",
+      wouldIKeepBuildingIt: "Yes. This is the one I would keep pushing hardest because the pain is recurring, emotional, and tied to a clear outcome. The question is not whether runners care. They do. The question is whether RaceIQ can become trustworthy enough to sit next to the watch, the plan, and the mildly cursed spreadsheet.",
+      finalVerdict: "RaceIQ feels like a real product trying to escape the swamp of generic fitness apps. Keep it narrow, keep it honest, and make every recommendation prove it deserves to exist."
+    },
     shipLogs: ["Build provenance became part of the product lesson.", "RevenueCat setup exposed how much polish purchase flows need.", "The best feature ideas were also the ones that needed the most restraint."]
   },
   {
@@ -206,6 +236,7 @@ export const reviews: Review[] = [
     founderSlug: "morgan-mitchell",
     founderName: "Morgan Mitchell",
     whatItDoes: "HydroPal is a hydration companion for turning daily water habits into a lighter ritual.",
+    excerpt: "HydroPal is instantly understandable, which is good. It is also in a category where every phone already knows how to nag you, which is less good.",
     stage: "Currently being built",
     category: "AI wellness",
     tools: ["Lovable", "Cursor", "Supabase"],
@@ -235,6 +266,24 @@ export const reviews: Review[] = [
     distributionIdeas: "Pick a specific audience, show real habit experiments, and make the use case concrete before going broad.",
     founderAdvice: "Choose a specific user and context. A hydration app for everyone risks becoming a reminder app for no one.",
     finalVerdict: "HydroPal has early signal, but it needs a sharper wedge before it deserves a bigger score.",
+    narrative: {
+      whatItIs: "HydroPal is a hydration companion built around daily water habits. The pitch is not complicated: help people drink more water without turning their phone into a tiny wellness cop.",
+      firstImpression: "The good news is that anyone can understand HydroPal in about five seconds. The bad news is that hydration apps live in one of the most dangerous neighborhoods in software: the land of reminders people ignore after three days. I say that with love, and also with several abandoned habit apps in my own personal graveyard.",
+      whatsWorking: [
+        "The product is clear. Nobody needs a whiteboard session to understand what it does.",
+        "A daily habit gives HydroPal natural repetition if the reminders feel helpful instead of needy.",
+        "The brand can stay light. Hydration does not need to pretend it is curing civilization."
+      ],
+      whatsRisky: [
+        "The category is crowded and lightweight. A hydration app has to justify why it deserves a permanent spot on someone's phone.",
+        "AI needs a real job here. If the AI layer is just cheerful nudges in different outfits, users will bounce.",
+        "Medical-sounding claims would be a mistake. Keep it useful, not clinical."
+      ],
+      whatIdDoNext: "If it were mine, I would stop thinking about 'people who should drink more water' and pick one painfully specific use case. Runners in a training block. Desk workers who forget until 4 p.m. People who use caffeine as a personality. The narrower the user, the easier it becomes to make the product feel less like a reminder and more like a tiny intervention.",
+      monetizationThoughts: "This is the hardest monetization story of the three launch reviews. A standalone subscription for water reminders is a tough sell unless HydroPal becomes meaningfully personalized or bundles into a broader wellness routine. I would prove retention first, then think about paid features. Charging too early here would be like opening a lemonade stand before buying lemons.",
+      wouldIKeepBuildingIt: "Yes, but I would keep the scope brutally small. HydroPal does not need a giant roadmap. It needs one daily loop that users do not hate by Friday.",
+      finalVerdict: "HydroPal has early signal because the product is clear and the habit is real. It needs a sharper audience and a stronger reason to exist beyond reminders before it becomes more than a pleasant idea."
+    },
     shipLogs: ["The simple version is probably the correct version.", "The product gets better when it stops trying to sound medical.", "The habit loop matters more than the AI layer."]
   },
   {
@@ -243,6 +292,7 @@ export const reviews: Review[] = [
     founderSlug: "morgan-mitchell",
     founderName: "Morgan Mitchell",
     whatItDoes: "DoughBuddy is AI help for home bakers trying to make better bread without a spreadsheet.",
+    excerpt: "DoughBuddy works because bread people are already obsessive in exactly the way software people understand. The trick is making the advice tested enough to earn trust.",
     stage: "Currently being built",
     category: "AI food",
     tools: ["Claude Code", "Next.js", "Supabase"],
@@ -266,12 +316,30 @@ export const reviews: Review[] = [
       appleRejectionRisk: "Low"
     },
     good: ["Specific hobbyist audience with high intent.", "Great fit for logs, troubleshooting, and iterative improvement.", "The product can create useful content and community from real baking attempts."],
-    risk: ["Recipe hallucinations can ruin trust.", "The app needs tested guidance, not endless generated recipes."],
+    risk: ["Recipe hallucinations can ruin trust.", "The app needs tested guidance, not endless recipe churn."],
     monetizationNotes: "DoughBuddy could monetize through premium recipe systems, baking logs, classes, or practical troubleshooting if the guidance becomes credible.",
     retentionNotes: "Retention improves if bakers can track past bakes, compare results, and build confidence over time.",
     distributionIdeas: "Publish build-in-public bake logs, show before-and-after attempts, and recruit serious hobby bakers as early testers.",
     founderAdvice: "Make the first loop about saving one bake. A single better loaf is stronger proof than a large recipe database.",
     finalVerdict: "DoughBuddy has strong potential because it is specific, tactile, and naturally content-rich.",
+    narrative: {
+      whatItIs: "DoughBuddy is AI help for home bakers who want better bread without turning their kitchen into a spreadsheet bunker. It can live somewhere between recipe guide, baking log, troubleshooting buddy, and the calmer version of that one forum commenter who knows too much about hydration percentages.",
+      firstImpression: "This one has a good shape. Bread is specific, visual, repeatable, and emotionally annoying in the exact way that creates loyal users. People do not casually wonder why their loaf collapsed. They investigate. They post photos. They blame humidity. They develop opinions about starters that would concern their relatives.",
+      whatsWorking: [
+        "The audience has high intent. Home bakers already want to improve, compare attempts, and understand what went wrong.",
+        "The product can earn retention through logs, past bakes, adjustments, and progress over time.",
+        "There is natural content here. Every bake creates a story, a photo, a result, and usually a small crisis."
+      ],
+      whatsRisky: [
+        "Recipe hallucinations are not cute when someone wastes six hours and a bag of flour.",
+        "The app has to prove its guidance. Bread people will forgive rough edges before they forgive confidently wrong advice.",
+        "A giant recipe database is less interesting than helping one baker fix one recurring problem."
+      ],
+      whatIdDoNext: "If it were mine, I would make DoughBuddy excellent at post-bake diagnosis before expanding. Let a baker log what happened, compare it to past attempts, and get one practical adjustment for next time. Saving one loaf is more persuasive than generating fifty recipes nobody asked for.",
+      monetizationThoughts: "There is a real paid path if DoughBuddy becomes a trusted baking notebook plus troubleshooting layer. Premium could make sense around advanced logs, recipe history, guided experiments, classes, or community features. But the trust has to come first. Bread is slow. So is credibility.",
+      wouldIKeepBuildingIt: "Yes. This is a strong niche with a user who already cares too much, which is usually where good products hide. I would keep building it as long as the app keeps getting closer to the actual messy kitchen, not just the fantasy recipe card.",
+      finalVerdict: "DoughBuddy has strong potential because it is specific, tactile, and naturally repeatable. The product should be less 'AI recipe machine' and more 'I helped you understand why that loaf looked like a doorstop.'"
+    },
     shipLogs: ["The starter math is less glamorous than the product idea, but more important.", "Trust depends on tested guidance.", "The best product proof is a better loaf."]
   }
 ];
@@ -308,7 +376,7 @@ export const articles: Article[] = [
     authorSlug: "morgan-mitchell",
     date: "2026-06-10",
     category: "Building in Public",
-    excerpt: "A founder-led Vibe Rater article shell. The final article will be added manually after deployment.",
+    excerpt: "Morgan Mitchell on building eight apps with AI, getting humbled by Apple, and learning that shipping is the only part that tells the truth.",
     body: `# I Built 8 Apps With AI and Somehow That's Not Even the Dumbest Thing I've Done This Year
 
 If you spend enough time online, you'd think AI app development is basically a money printer. Every day there's some guy on Twitter posting screenshots about how he built an app over a weekend and now makes more money than a surgeon while working three hours a week from a beach in Bali.
@@ -384,7 +452,7 @@ export const newsletterIssues = [
     founderOfWeek: "Morgan Mitchell",
     articleSlug: "i-built-8-apps-with-ai",
     toolOfWeek: "Codex",
-    building: "Vibe Rater is launching as a real founder-led publication with a live submission form, an eight-part scoring framework, and the first Morgan Mitchell build-in-public article shell."
+    building: "Vibe Rater is live with a submit form, a Vibe Score, and the first Morgan Mitchell build-in-public story."
   }
 ];
 
@@ -422,51 +490,51 @@ export const seoPages: SeoPage[] = [
   {
     slug: "what-is-vibe-coding",
     title: "What Is Vibe Coding?",
-    description: "A founder-friendly explanation of vibe coding, AI-built apps, and what still matters after the code works.",
+    description: "A plain-English guide to vibe coding, AI-built apps, and what still matters once the code actually runs.",
     h1: "What Is Vibe Coding?",
     intro: "Vibe coding is what happens when founders use AI tools to move from idea to working software faster than the old rules allowed. The catch is that fast code does not automatically mean a useful product.",
     sections: [
-      { heading: "The useful definition", body: "Vibe coding means using tools like Claude Code, Codex, Cursor, Lovable, Bolt, Replit, and Supabase to build software through fast iteration, prompting, editing, testing, and shipping." },
+      { heading: "The short version", body: "Vibe coding means using tools like Claude Code, Codex, Cursor, Lovable, Bolt, Replit, and Supabase to build software through fast iteration, prompting, editing, testing, and shipping." },
       { heading: "What still matters", body: "The app still needs clarity, usefulness, trust, retention, distribution, and a reason to exist. Vibe Rater reviews those parts because that is where most AI-built apps either become real products or quietly disappear." }
     ]
   },
   {
     slug: "best-vibe-coding-tools",
-    title: "Best Vibe Coding Tools for Founders",
-    description: "A practical founder-focused guide to the AI tools used to build, ship, and review vibe-coded apps.",
+    title: "Best Vibe Coding Tools",
+    description: "A practical guide to the AI tools people are using to build and ship vibe-coded apps.",
     h1: "Best Vibe Coding Tools",
     intro: "The best vibe coding tool is the one that helps you ship a product people can understand, use, and trust. The stack matters, but the product judgment matters more.",
     sections: [
       { heading: "Tools worth watching", body: "Vibe Rater tracks products built with Claude Code, Codex, Cursor, Lovable, Bolt, Replit, Supabase, Expo, and RevenueCat because those tools keep showing up in real founder workflows." },
-      { heading: "The builder trap", body: "A tool can help you build quickly, but it will not solve positioning, onboarding, retention, App Store review, or distribution. That is why every Vibe Score includes product and founder-market fit, not just polish." }
+      { heading: "The builder trap", body: "A tool can help you build quickly, but it will not solve positioning, onboarding, retention, App Store review, or distribution. That is why a Vibe Score looks past polish and asks whether the product has a real reason to exist." }
     ]
   },
   {
     slug: "apps-built-with-ai",
     title: "Apps Built With AI",
-    description: "A founder-led directory and review hub for real apps built with AI tools.",
+    description: "A directory and review hub for real apps built with AI tools.",
     h1: "Apps Built With AI",
     intro: "AI-built apps are no longer a novelty. The interesting question is whether anyone wants to use them after the launch post fades.",
     sections: [
       { heading: "What gets covered", body: "Vibe Rater covers AI-built apps from real founders, including Morgan Mitchell projects and products submitted through the review form." },
-      { heading: "How we review them", body: "Every review looks at product clarity, usefulness, design, retention, monetization, differentiation, trust, and founder-market fit." }
+      { heading: "How we review them", body: "Every review asks the same hard questions: is it clear, useful, trustworthy, different enough, and worth coming back to?" }
     ]
   },
   {
     slug: "apps-built-with-cursor",
     title: "Apps Built With Cursor",
-    description: "Reviews and founder notes for apps built with Cursor and modern AI development workflows.",
+    description: "Reviews and founder notes for apps built with Cursor.",
     h1: "Apps Built With Cursor",
     intro: "Cursor can help founders move quickly, but the product still has to earn attention. This page tracks real products and submitted apps built with Cursor.",
     sections: [
-      { heading: "What we look for", body: "We care less about whether Cursor generated code and more about whether the app is clear, useful, safe, and likely to retain real users." },
-      { heading: "Submit a Cursor-built app", body: "If you built with Cursor, send the product through the Tally form. Submissions are reviewed through the same Vibe Score framework as every other app." }
+      { heading: "What we look for", body: "We care less about how fast the code came together and more about whether the app is clear, useful, safe, and likely to retain real users." },
+      { heading: "Submit a Cursor-built app", body: "If you built with Cursor, send the product through the Tally form. We will look at what is clear, what is confusing, and whether the app gives people a reason to return." }
     ]
   },
   {
     slug: "apps-built-with-codex",
     title: "Apps Built With Codex",
-    description: "A review hub for apps built with Codex, AI coding agents, and founder-led product workflows.",
+    description: "A review hub for apps built with Codex and AI coding agents.",
     h1: "Apps Built With Codex",
     intro: "Codex can help founders build and refactor faster. Vibe Rater is interested in what happens after that: onboarding, retention, trust, monetization, and distribution.",
     sections: [
@@ -477,18 +545,18 @@ export const seoPages: SeoPage[] = [
   {
     slug: "apps-built-with-bolt",
     title: "Apps Built With Bolt",
-    description: "Founder-focused reviews for apps built with Bolt and AI-assisted app development tools.",
+    description: "Reviews for apps built with Bolt and judged like real products.",
     h1: "Apps Built With Bolt",
     intro: "Bolt makes it easier to get something live. Vibe Rater asks the harder question: is the thing worth using?",
     sections: [
-      { heading: "What counts", body: "Real founder projects, public launches, and submitted apps built with Bolt can be included. No invented rankings and no invented traction." },
-      { heading: "Review angle", body: "We look at the product, not just the build speed. The score is blunt, founder-friendly, and designed to make the app better." }
+      { heading: "What counts", body: "Real projects, public launches, and submitted Bolt apps can be included. We are not making up rankings or pretending traction exists." },
+      { heading: "Review angle", body: "We look at the product, not just the build speed. The score is blunt because vague compliments do not help anyone ship a better product." }
     ]
   },
   {
     slug: "apps-built-with-lovable",
     title: "Apps Built With Lovable",
-    description: "A founder-led page for apps built with Lovable, reviewed through the Vibe Rater scoring framework.",
+    description: "A page for Lovable-built apps that are judged like real products.",
     h1: "Apps Built With Lovable",
     intro: "Lovable is one of the tools changing how quickly founders can turn an idea into an app. Vibe Rater reviews whether those apps are clear, useful, and worth coming back to.",
     sections: [
@@ -503,7 +571,7 @@ export const seoPages: SeoPage[] = [
     h1: "Apps Built With Replit",
     intro: "Replit helps founders get ideas into the browser fast. Vibe Rater focuses on whether those ideas become products people actually use.",
     sections: [
-      { heading: "Founder-first reviews", body: "The review is not about dunking on a prototype. It is about finding what is clear, what is risky, and what might make the product more useful." },
+      { heading: "Real product feedback", body: "A prototype does not need a victory parade. It needs someone to point out what is clear, what is risky, and what would make it more useful." },
       { heading: "Distribution matters", body: "A Replit build can ship quickly, but the hard part is still earning trust, attention, and repeat usage." }
     ]
   },
@@ -525,8 +593,8 @@ export const seoPages: SeoPage[] = [
     h1: "Vibe Coding App Reviews",
     intro: "Vibe Rater reviews the apps people built with vibes, AI tools, late-night confidence, and occasionally terrible judgment.",
     sections: [
-      { heading: "The review format", body: "Every review includes what the app does, who built it, the tools used, stage, screenshots when available, Vibe Score, score breakdown, risks, monetization, retention, distribution, founder advice, and verdict." },
-      { heading: "Useful over mean", body: "The tone is blunt, but the point is not humiliation. The point is to help founders understand what is working and what is not." }
+      { heading: "What we look at", body: "Every review covers what the app does, who built it, what it was built with, what feels promising, what feels risky, and what the founder should fix next." },
+      { heading: "Useful over mean", body: "Blunt does not mean cruel. It means skipping the polite fog and getting to the part that helps." }
     ]
   },
   {
@@ -536,16 +604,16 @@ export const seoPages: SeoPage[] = [
     h1: "AI App Review Site",
     intro: "Vibe Rater exists because the AI app gold rush has plenty of launch posts and not enough honest product feedback.",
     sections: [
-      { heading: "What makes it different", body: "Reviews are founder-led, public, and grounded in product usefulness rather than vague hype." },
-      { heading: "Who should submit", body: "Submit if you built an AI-powered product, mobile app, indie tool, or vibe-coded project and want honest feedback before pretending everything is fine." }
+      { heading: "What makes it different", body: "Reviews are public, direct, and grounded in whether the product is actually useful." },
+      { heading: "Who should submit", body: "Submit if you built an AI-powered product, mobile app, indie tool, or vibe-coded project and want a sharper read before the next launch push." }
     ]
   },
   {
     slug: "submit-your-ai-app",
     title: "Submit Your AI App",
-    description: "Submit your AI-built app to Vibe Rater for honest founder-friendly review and feedback.",
+    description: "Submit your AI-built app to Vibe Rater for a clear, blunt review.",
     h1: "Submit Your AI App",
-    intro: "Built something with AI? Send it in. Vibe Rater reviews real submitted apps and keeps the feedback direct, useful, and founder-friendly.",
+    intro: "Built something with AI? Send it in. Vibe Rater reviews real submitted apps and keeps the feedback direct enough to be useful.",
     sections: [
       { heading: "What to include", body: "Send the app name, founder name, links, tools used, stage, and screenshots if you have them. Do not worry if it is messy. Most real products are." },
       { heading: "What happens next", body: "Submissions go through Tally. If the founding cohort is full, new submissions are still accepted but treated as waitlist interest rather than a promised free review." }
@@ -554,35 +622,35 @@ export const seoPages: SeoPage[] = [
   {
     slug: "roast-my-app",
     title: "Roast My App",
-    description: "Get your AI-built app reviewed with honest, blunt, founder-friendly product feedback.",
+    description: "Get your AI-built app reviewed with honest, blunt product feedback.",
     h1: "Roast My App",
     intro: "Get your AI-built app reviewed by someone who has been rejected by Apple, banned from Reddit, broken builds in production, and still keeps shipping.",
     specialNote: "Not vibrators. Vibe Rater. Different kind of brutally honest review.",
     sections: [
-      { heading: "Free for now", body: "Roast My App is free for now while Vibe Rater builds the founding cohort. Future paid review options are planned, but payments are not enabled yet." },
-      { heading: "Not mean for sport", body: "The feedback is honest, blunt, and founder-friendly. The goal is not to dunk on founders. The goal is to help the product get clearer, sharper, and more useful." }
+      { heading: "Free for now", body: "Roast My App is free for now while Vibe Rater builds the founding cohort. Paid reviews will probably come later, but there is nothing to buy today." },
+      { heading: "Not mean for sport", body: "The feedback is blunt, but it is not mean for sport. The point is to help the product get clearer, sharper, and more useful." }
     ]
   },
   {
     slug: "ai-startup-directory",
     title: "AI Startup Directory",
-    description: "A founder-led directory for AI-built startups, reviewed apps, and products built in public.",
+    description: "A directory for AI-built startups, reviewed apps, and products built in public.",
     h1: "AI Startup Directory",
     intro: "The Vibe Rater directory is starting small on purpose: real projects, real submissions, and no made-up rankings.",
     sections: [
-      { heading: "What appears here", body: "Reviewed apps, submitted products, founder stories, and build-in-public projects can appear as the directory grows." },
+      { heading: "What appears here", body: "Reviewed apps, submitted products, founder stories, and build-in-public projects will show up here as the site grows." },
       { heading: "Why this matters", body: "AI-built startups need more than launch hype. They need feedback, discoverability, and honest context about what is actually working." }
     ]
   },
   {
     slug: "indie-app-reviews",
     title: "Indie App Reviews",
-    description: "Honest reviews for indie apps, AI-built products, and founder-led software.",
+    description: "Honest reviews for indie apps, AI-built products, and software built in public.",
     h1: "Indie App Reviews",
     intro: "Indie founders do not need another vague compliment. They need someone to look at the product and say what is clear, what is confusing, and what might actually work.",
     sections: [
-      { heading: "Founder-friendly critique", body: "A Vibe Rater review is designed to be useful to the builder, not performative for the crowd." },
-      { heading: "What gets scored", body: "Each app is scored across clarity, usefulness, design, retention, monetization, differentiation, trust, and founder-market fit." }
+      { heading: "Useful critique", body: "A Vibe Rater review is for the builder first. If it would not help the founder make a better product, it does not belong." },
+      { heading: "What gets scored", body: "Each app gets judged on the stuff users notice fast: clarity, usefulness, design, trust, differentiation, and whether anyone has a reason to return." }
     ]
   },
   {
@@ -593,13 +661,13 @@ export const seoPages: SeoPage[] = [
     intro: "Vibe Rater founder stories focus on what actually happened: the product, the mistakes, the weird launch moments, and the lessons that did not fit in a polished Twitter thread.",
     sections: [
       { heading: "Current founder story", body: "The launch founder story is Morgan Mitchell, the founder of Vibe Rater and builder of RaceIQ, HydroPal, DoughBuddy, Athlo, ClaimCheck, BeanQuest, DiscMode, and Vibe Rater." },
-      { heading: "Future stories", body: "Future founder stories will come from real submitted founders and reviewed apps. No synthetic founder profiles." }
+      { heading: "Future stories", body: "New stories will come from builders who submit real products. Otherwise there is nothing worth publishing." }
     ]
   },
   {
     slug: "app-launch-teardowns",
     title: "App Launch Teardowns",
-    description: "Blunt, useful teardowns of app launches, positioning, review signals, and founder lessons.",
+    description: "Blunt teardowns of app launches, positioning, product clarity, and what founders can fix next.",
     h1: "App Launch Teardowns",
     intro: "A launch teardown looks past the announcement and asks what the app actually communicates, who it is for, and why someone would come back.",
     sections: [
@@ -610,18 +678,18 @@ export const seoPages: SeoPage[] = [
   {
     slug: "app-store-rejection-stories",
     title: "App Store Rejection Stories",
-    description: "Founder stories and lessons from App Store rejections, review fixes, and mobile app launch pain.",
+    description: "Stories and lessons from App Store rejections, review fixes, and mobile app launch pain.",
     h1: "App Store Rejection Stories",
-    intro: "App Store rejection stories are where optimism goes to get humbled. Vibe Rater treats them as useful founder education, not shame.",
+    intro: "App Store rejection stories are where optimism goes to get humbled. Vibe Rater treats them as lessons, not shame.",
     sections: [
-      { heading: "Why they matter", body: "Rejections expose unclear metadata, broken flows, privacy issues, subscription confusion, and product assumptions founders did not know they were making." },
-      { heading: "What Vibe Rater covers", body: "We cover the lesson, the fix, and what future founders can avoid. No invented App Store horror stories." }
+      { heading: "Why they matter", body: "Rejections expose messy store copy, broken flows, privacy gaps, subscription confusion, and assumptions founders did not know they were making." },
+      { heading: "What Vibe Rater covers", body: "We cover what broke, what fixed it, and what the next founder can avoid." }
     ]
   },
   {
     slug: "building-in-public",
     title: "Building in Public",
-    description: "Build-in-public notes from Vibe Rater and founders shipping AI-built apps.",
+    description: "Build-in-public notes from Vibe Rater and people shipping AI-built apps.",
     h1: "Building in Public",
     intro: "Building in public is not just posting wins. It is admitting when Apple rejects the build, Reddit hates the post, or the feature you loved makes no sense to users.",
     sections: [
@@ -632,12 +700,12 @@ export const seoPages: SeoPage[] = [
   {
     slug: "ai-founder-interviews",
     title: "AI Founder Interviews",
-    description: "Interviews with founders building AI-powered apps, vibe-coded products, and indie software.",
+    description: "Interviews with people building AI-powered apps, vibe-coded products, and indie software.",
     h1: "AI Founder Interviews",
-    intro: "AI founder interviews should be more than victory laps. Vibe Rater wants the build story, the mistake, the lesson, and the part that almost broke the founder's brain.",
+    intro: "AI founder interviews should be more than victory laps. Vibe Rater wants the mistake, the lesson, and the part that almost broke the founder's brain.",
     sections: [
-      { heading: "Interview focus", body: "Why they built it, what tools they used, what went wrong, what users misunderstood, and what they would fix next." },
-      { heading: "How to be considered", body: "Submit your app through Tally. Founder interviews may become a paid format later, but payments are not enabled yet." }
+      { heading: "What we ask", body: "Why they built it, what tools they used, what went wrong, what users misunderstood, and what they would fix next." },
+      { heading: "How to be considered", body: "Submit your app through Tally. Interviews may become a paid format later, but right now the focus is finding builders with something real to say." }
     ]
   }
 ];

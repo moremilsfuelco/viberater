@@ -10,7 +10,7 @@ export default function ReviewsPage() {
   return (
     <main>
       <Band>
-        <SectionHeader kicker="Directory" title="Vibe-Coded App Reviews" body="Every review follows the repeatable Vibe Rater template: what it does, who built it, the stack, screenshots when available, Vibe Score, score breakdown, risks, monetization, retention, distribution, founder advice, and final verdict." />
+        <SectionHeader kicker="Directory" title="Vibe-Coded App Reviews" body="Every review starts with the same question: would a real person understand this, use it, trust it, and come back? Then we get into what’s promising, what’s risky, and what the founder should fix next." />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review) => <ReviewCard key={review.slug} review={review} />)}
         </div>

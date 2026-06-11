@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { beehiivUrl, calculateVibeScore, getClaimedFounderReviewCount, isFoundingCohortFull, MAX_FREE_FOUNDERS, Review, scoreKeys, scoreLabel, scoreLabels, tallyUrl, verdictLabel } from "@/lib/content";
+import { beehiivUrl, calculateVibeScore, getClaimedFounderReviewCount, isFoundingCohortFull, MAX_FREE_FOUNDERS, Review, scoreLabel, tallyUrl, verdictLabel } from "@/lib/content";
 
 export function LogoMark({ compact = false }: { compact?: boolean }) {
   return (
@@ -40,7 +40,6 @@ export function ScoreBadge({ score, compact = false }: { score: number; compact?
 
 export function ScorePanel({ review }: { review: Review }) {
   const vibeScore = calculateVibeScore(review.scores);
-  const scoreRows = scoreKeys.slice(0, 6).map((key) => [scoreLabels[key], review.scores[key]] as const);
 
   return (
     <div className="rounded-lg border border-line bg-black/[0.42] p-5 shadow-glow">
@@ -48,25 +47,20 @@ export function ScorePanel({ review }: { review: Review }) {
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-ember">Featured Review</p>
           <h2 className="mt-4 font-display text-3xl font-black tracking-tight">{review.appName}</h2>
-          <p className="mt-2 text-sm leading-6 text-paper/[0.66]">{review.whatItDoes}</p>
+          <p className="mt-2 text-sm leading-6 text-paper/[0.66]">{review.excerpt}</p>
         </div>
-        <div className="min-w-24 rounded-lg border border-acid/[0.48] bg-acid text-center text-ink">
+        <div className="min-w-24 rounded-lg border border-acid/[0.48] bg-acid text-center text-ink" aria-label={`${review.appName} Vibe Score ${vibeScore.toFixed(1)}`}>
           <p className="border-b border-ink/[0.16] px-3 py-2 text-[10px] font-black uppercase tracking-[0.2em]">Vibe Score</p>
           <p className="px-3 py-4 font-display text-5xl font-black leading-none">{vibeScore.toFixed(1)}</p>
         </div>
       </div>
-      <div className="mt-5 grid grid-cols-3 gap-2">
-        {scoreRows.map(([label, score]) => (
-          <div key={label} className="rounded-md border border-line bg-white/[0.055] p-3">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-paper/[0.42]">{label}</p>
-            <p className="mt-1 font-display text-xl font-black text-paper">{score}/10</p>
-          </div>
-        ))}
-      </div>
       <div className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
         <div className="rounded-md bg-white/[0.07] p-3"><span className="block text-paper/[0.48]">Verdict</span>{verdictLabel(scoreLabel(vibeScore))}</div>
-        <div className="rounded-md bg-white/[0.07] p-3"><span className="block text-paper/[0.48]">Founder Signal</span>{review.signals.delusionFactor}</div>
+        <div className="rounded-md bg-white/[0.07] p-3"><span className="block text-paper/[0.48]">Read if you care about</span>{review.category}</div>
       </div>
+      <Link href={`/reviews/${review.slug}`} className="mt-5 inline-flex rounded-md bg-paper px-4 py-2 text-sm font-bold text-ink transition hover:bg-acid">
+        Read the review
+      </Link>
     </div>
   );
 }
@@ -83,7 +77,7 @@ export function ReviewCard({ review, featured = false }: { review: Review; featu
         </div>
         <ScoreBadge score={vibeScore} compact />
       </div>
-      <p className="mt-4 text-sm leading-6 text-paper/[0.68]">{review.whatItDoes}</p>
+      <p className="mt-4 text-sm leading-6 text-paper/[0.68]">{review.excerpt}</p>
       <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-paper/[0.46]">Founder: {review.founderName}</p>
       <div className="mt-5 flex flex-wrap gap-2">
         {review.tools.map((tool) => (
@@ -91,7 +85,7 @@ export function ReviewCard({ review, featured = false }: { review: Review; featu
         ))}
       </div>
       <p className="mt-5 text-sm font-semibold text-paper">{verdictLabel(scoreLabel(vibeScore))}</p>
-      <p className="mt-1 text-xs text-paper/[0.48]">Calculated from the 8-part Vibe Score rubric</p>
+      <p className="mt-1 text-xs text-paper/[0.48]">Score included. Actual judgment inside.</p>
     </Link>
   );
 }

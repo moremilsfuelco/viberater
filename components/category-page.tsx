@@ -39,7 +39,7 @@ export function CategoryPage({ slug }: { slug: string }) {
         <SectionHeader kicker="SEO Guide" title={page.title} body={page.dek} />
         <div className="rounded-lg border border-line bg-white/[0.045] p-5">
           <p className="text-sm leading-7 text-paper/[0.70]">
-            Vibe Rater tracks vibe-coded app reviews, indie AI startups, and AI founder stories with human judgment instead of launch hype. This page is designed to become a durable editorial hub as more reviews are published.
+            Vibe Rater tracks vibe-coded app reviews, indie AI startups, and founder stories with human judgment instead of launch hype. As more real apps come in, this page gets sharper.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {page.keywords.split(", ").map((keyword) => (

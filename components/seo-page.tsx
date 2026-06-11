@@ -71,7 +71,7 @@ export function SeoLandingPage({ page }: { page: SeoPage }) {
             <FoundingCohortStatus />
             <div className="rounded-lg border border-line bg-ember p-5 text-ink">
               <h2 className="font-display text-2xl font-black">Built something with AI?</h2>
-              <p className="mt-2 text-sm leading-6 text-ink/[0.74]">Submit it for a blunt, useful, founder-friendly review.</p>
+              <p className="mt-2 text-sm leading-6 text-ink/[0.74]">Submit it for a review that says the quiet part out loud.</p>
               <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex rounded-md bg-ink px-4 py-3 text-sm font-bold text-paper">
                 Submit Your App
               </Link>

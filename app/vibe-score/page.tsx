@@ -3,7 +3,7 @@ import { scoringFramework } from "@/lib/content";
 
 export const metadata = {
   title: "What is a Vibe Score?",
-  description: "The Vibe Rater scoring framework for AI-built apps and founder-led products."
+  description: "How Vibe Rater judges whether an AI-built app feels clear, useful, trustworthy, and worth coming back to."
 };
 
 const labels = [
@@ -19,7 +19,7 @@ export default function VibeScorePage() {
   return (
     <main>
       <Band>
-        <SectionHeader kicker="Scoring System" title="What is a Vibe Score?" body="A Vibe Score is not a dunk, hype score, revenue estimate, or VC cosplay. It is a blunt, founder-friendly review framework for figuring out whether an AI-built app has real product signal." />
+        <SectionHeader kicker="Vibe Score" title="What is a Vibe Score?" body="The Vibe Score is our gut-check number for whether an app feels clear, useful, trustworthy, and worth coming back to. We’re not here to be fake nice, and we’re not here to dunk on people for sport. The point is to give builders feedback they can actually use." />
         <div className="grid gap-4 md:grid-cols-2">
           {scoringFramework.map(([title, body], index) => (
             <section key={title} className="rounded-lg border border-line bg-white/[0.045] p-5">
@@ -31,7 +31,7 @@ export default function VibeScorePage() {
         </div>
         <section className="mt-10 rounded-lg border border-line bg-white/[0.045] p-6">
           <h2 className="font-display text-3xl font-bold">Overall Vibe Score</h2>
-          <p className="mt-3 text-sm leading-7 text-paper/[0.70]">The overall Vibe Score is the average of the eight core scores. The tone is honest, funny, founder-friendly, and blunt. The goal is not to dunk on founders. The goal is to tell the truth in a useful way.</p>
+          <p className="mt-3 text-sm leading-7 text-paper/[0.70]">We score the things that usually decide whether an app has a shot: can people understand it, does it solve a real problem, does it feel safe, and would anyone come back after the first try. The number is there to make the judgment easier to scan. The notes are where the real value lives.</p>
           <div className="mt-6 grid gap-3 md:grid-cols-3">
             {labels.map(([range, label]) => (
               <div key={range} className="rounded-md border border-line bg-black/[0.22] p-4">

@@ -34,7 +34,7 @@ export default function SubmitPage() {
             </div>
             {cohortFull ? (
               <p className="mt-4 rounded-lg border border-ember/[0.32] bg-ember/[0.10] p-4 text-sm font-semibold leading-6 text-paper">
-                New submissions are still accepted, but they are marked as Waitlist. A free review is not promised after the founding cohort is full.
+                New submissions still go through. Once the founding cohort is full, you are joining the waitlist instead of claiming a free review.
               </p>
             ) : null}
 
@@ -63,7 +63,7 @@ export default function SubmitPage() {
             </p>
 
             <div className="mt-6 rounded-lg border border-line bg-white/[0.045] p-5">
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-ember">Future pricing structure</p>
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-ember">Likely paid options later</p>
               <div className="mt-4 space-y-3">
                 {futureReviewOffers.map((offer) => (
                   <div key={offer.name} className="rounded-md border border-line bg-black/[0.20] p-4">
@@ -72,7 +72,7 @@ export default function SubmitPage() {
                       <p className="font-display text-2xl font-black text-acid">{offer.price}</p>
                     </div>
                     <p className="mt-2 text-sm leading-6 text-paper/[0.62]">{offer.description}</p>
-                    <p className="mt-2 text-xs font-bold uppercase tracking-[0.18em] text-paper/[0.42]">Payments not enabled yet</p>
+                    <p className="mt-2 text-xs font-bold uppercase tracking-[0.18em] text-paper/[0.42]">Not for sale yet</p>
                   </div>
                 ))}
               </div>

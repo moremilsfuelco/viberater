@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Band, ScoreBadge, ShipLog } from "@/components/ui";
+import { Band, ShipLog } from "@/components/ui";
 import { calculateVibeScore, getReview, reviews, scoreKeys, scoreLabel, scoreLabels, verdictLabel } from "@/lib/content";
 
 export function generateStaticParams() {
@@ -27,11 +27,11 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
   return (
     <main>
       <Band>
-        <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
-          <article>
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+          <article className="max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-pool">{review.category}</p>
             <h1 className="mt-4 font-display text-5xl font-black tracking-tight text-balance">{review.appName}</h1>
-            <p className="mt-4 text-xl leading-8 text-paper/[0.72]">{review.whatItDoes}</p>
+            <p className="mt-4 text-xl leading-8 text-paper/[0.74]">{review.excerpt}</p>
 
             <div className="mt-6 grid gap-3 text-sm text-paper/[0.70] md:grid-cols-3">
               <Meta label="Founder" value={review.founderName} />
@@ -41,36 +41,24 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
 
             <ScreenshotGallery reviewName={review.appName} screenshots={review.screenshots} />
 
-            <ReviewSection title="The Good" items={review.good} />
-            <ReviewSection title="The Risk" items={review.risk} />
-            <TextSection title="Monetization Notes" body={review.monetizationNotes} />
-            <TextSection title="Retention Notes" body={review.retentionNotes} />
-            <TextSection title="Distribution Ideas" body={review.distributionIdeas} />
-            <TextSection title="Founder Advice" body={review.founderAdvice} />
-            <TextSection title="Final Verdict" body={review.finalVerdict} />
+            <TextSection title="What It Is" body={review.narrative.whatItIs} />
+            <TextSection title="First Impression" body={review.narrative.firstImpression} />
+            <ReviewSection title="What's Working" items={review.narrative.whatsWorking} />
+            <ReviewSection title="What's Risky" items={review.narrative.whatsRisky} />
+            <TextSection title="What I'd Do Next If It Were Mine" body={review.narrative.whatIdDoNext} />
+            <TextSection title="Monetization Thoughts" body={review.narrative.monetizationThoughts} />
+            <TextSection title="Would I Keep Building It?" body={review.narrative.wouldIKeepBuildingIt} />
+            <ScoreBreakdown score={vibeScore} scoreRows={scoreRows} signals={review.signals} />
+            <TextSection title="Final Verdict" body={review.narrative.finalVerdict} />
           </article>
 
           <aside className="space-y-5 lg:sticky lg:top-24 lg:self-start">
-            <div className="rounded-lg border border-line bg-white/[0.045] p-5">
-              <ScoreBadge score={vibeScore} />
-              <p className="mt-5 text-sm font-bold text-acid">{verdictLabel(scoreLabel(vibeScore))}</p>
-              <div className="mt-5 space-y-3">
-                {scoreRows.map(([label, score]) => (
-                  <div key={label} className="flex items-center justify-between border-b border-line pb-2 text-sm">
-                    <span className="text-paper/[0.62]">{label}</span>
-                    <span className="font-bold text-paper">{score}/10</span>
-                  </div>
-                ))}
-              </div>
-            </div>
             <div className="rounded-lg border border-line bg-white/[0.045] p-5 text-sm">
-              <p className="font-bold text-paper">Reality Checks</p>
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-acid">Review notes</p>
               <dl className="mt-4 space-y-3 text-paper/[0.68]">
-                <div><dt className="text-paper/[0.42]">AI Slop Risk</dt><dd>{review.signals.aiSlopRisk}</dd></div>
-                <div><dt className="text-paper/[0.42]">Founder Delusion Factor</dt><dd>{review.signals.delusionFactor}</dd></div>
-                <div><dt className="text-paper/[0.42]">Would I Download It?</dt><dd>{review.signals.download}</dd></div>
-                <div><dt className="text-paper/[0.42]">Would I Keep It?</dt><dd>{review.signals.keep}</dd></div>
-                <div><dt className="text-paper/[0.42]">Apple Rejection Risk</dt><dd>{review.signals.appleRejectionRisk}</dd></div>
+                <div><dt className="text-paper/[0.42]">Built with</dt><dd>{review.tools.join(", ")}</dd></div>
+                <div><dt className="text-paper/[0.42]">Stage</dt><dd>{review.stage}</dd></div>
+                <div><dt className="text-paper/[0.42]">Category</dt><dd>{review.category}</dd></div>
               </dl>
             </div>
             <ShipLog items={review.shipLogs} />
@@ -92,7 +80,7 @@ function Meta({ label, value }: { label: string; value: string }) {
 
 function ScreenshotGallery({ reviewName, screenshots }: { reviewName: string; screenshots: Array<{ src?: string; alt: string; caption: string }> }) {
   const items = screenshots.length ? screenshots : [
-    { alt: `${reviewName} screenshot pending`, caption: "Screenshots will appear here when founder-submitted, public store, or manually added images are available." }
+    { alt: `${reviewName} screenshot pending`, caption: "Screenshots will appear here when founder-submitted or public store images are available." }
   ];
 
   return (
@@ -120,7 +108,7 @@ function ReviewSection({ title, items }: { title: string; items: string[] }) {
   return (
     <section className="mt-10">
       <h2 className="font-display text-3xl font-bold">{title}</h2>
-      <ul className="mt-4 space-y-3 text-sm leading-6 text-paper/[0.70]">
+      <ul className="mt-4 space-y-3 text-base leading-7 text-paper/[0.74]">
         {items.map((item) => <li key={item} className="border-l-2 border-acid pl-4">{item}</li>)}
       </ul>
     </section>
@@ -131,7 +119,53 @@ function TextSection({ title, body }: { title: string; body: string }) {
   return (
     <section className="mt-10">
       <h2 className="font-display text-3xl font-bold">{title}</h2>
-      <p className="mt-4 text-sm leading-7 text-paper/[0.70]">{body}</p>
+      <p className="mt-4 text-base leading-8 text-paper/[0.74]">{body}</p>
+    </section>
+  );
+}
+
+function ScoreBreakdown({
+  score,
+  scoreRows,
+  signals
+}: {
+  score: number;
+  scoreRows: readonly (readonly [string, number])[];
+  signals: {
+    aiSlopRisk: string;
+    delusionFactor: string;
+    download: string;
+    keep: string;
+    appleRejectionRisk: string;
+  };
+}) {
+  return (
+    <section className="mt-12 rounded-lg border border-line bg-white/[0.045] p-5 md:p-6">
+      <p className="text-xs font-bold uppercase tracking-[0.22em] text-pool">The Score, After the Coffee</p>
+      <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="font-display text-6xl font-black leading-none text-acid">{score.toFixed(1)}</p>
+          <p className="mt-2 text-sm font-bold text-paper">{verdictLabel(scoreLabel(score))}</p>
+        </div>
+        <p className="max-w-md text-sm leading-6 text-paper/[0.64]">
+          The number is the receipt, not the review. It is there to make the judgment easier to compare, not to replace the part where a human says what is actually going on.
+        </p>
+      </div>
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+        {scoreRows.map(([label, rowScore]) => (
+          <div key={label} className="flex items-center justify-between rounded-md border border-line bg-black/[0.22] px-3 py-2 text-sm">
+            <span className="text-paper/[0.64]">{label}</span>
+            <span className="font-bold text-paper">{rowScore}/10</span>
+          </div>
+        ))}
+      </div>
+      <dl className="mt-6 grid gap-3 text-sm text-paper/[0.70] sm:grid-cols-2">
+        <div className="rounded-md bg-white/[0.06] p-3"><dt className="text-paper/[0.42]">AI Slop Risk</dt><dd>{signals.aiSlopRisk}</dd></div>
+        <div className="rounded-md bg-white/[0.06] p-3"><dt className="text-paper/[0.42]">Founder Delusion Factor</dt><dd>{signals.delusionFactor}</dd></div>
+        <div className="rounded-md bg-white/[0.06] p-3"><dt className="text-paper/[0.42]">Would I Download It?</dt><dd>{signals.download}</dd></div>
+        <div className="rounded-md bg-white/[0.06] p-3"><dt className="text-paper/[0.42]">Would I Keep It?</dt><dd>{signals.keep}</dd></div>
+        <div className="rounded-md bg-white/[0.06] p-3 sm:col-span-2"><dt className="text-paper/[0.42]">Apple Rejection Risk</dt><dd>{signals.appleRejectionRisk}</dd></div>
+      </dl>
     </section>
   );
 }

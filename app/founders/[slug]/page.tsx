@@ -36,7 +36,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
         <div className="max-w-4xl">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-pool">{founder.app}</p>
           <h1 className="mt-4 font-display text-5xl font-black tracking-tight">{founder.name}</h1>
-          <p className="mt-5 text-xl leading-8 text-paper/[0.72]">A founder profile about the actual build: the reason, the mistake, the lesson, and the current goal.</p>
+          <p className="mt-5 text-xl leading-8 text-paper/[0.72]">The work, the mistake, the lesson, and what Morgan is trying to ship next.</p>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {rows.map(([label, value]) => (
