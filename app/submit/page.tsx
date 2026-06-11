@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { Band } from "@/components/ui";
-
-const tallyUrl = "https://tally.so/r/44Og9B";
-const tallyEmbedUrl = "https://tally.so/embed/44Og9B?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
+import { Band, FoundingCohortStatus } from "@/components/ui";
+import { futureReviewOffers, isFoundingCohortFull, tallyEmbedUrl, tallyUrl } from "@/lib/content";
 
 export const metadata = {
   title: "Submit Your App",
@@ -10,6 +8,7 @@ export const metadata = {
 };
 
 export default function SubmitPage() {
+  const cohortFull = isFoundingCohortFull();
   const benefits = [
     "Vibe Score",
     "Honest review",
@@ -30,9 +29,14 @@ export default function SubmitPage() {
             <p className="mt-5 text-lg leading-8 text-paper/[0.74]">
               We're reviewing AI-built apps, indie startups, SaaS products, mobile apps, and vibe-coded projects.
             </p>
-            <p className="mt-5 rounded-lg border border-acid/[0.32] bg-acid/[0.10] p-4 text-sm font-semibold leading-6 text-paper">
-              The first 25 founder reviews are free while we build the Vibe Rater directory.
-            </p>
+            <div className="mt-5">
+              <FoundingCohortStatus />
+            </div>
+            {cohortFull ? (
+              <p className="mt-4 rounded-lg border border-ember/[0.32] bg-ember/[0.10] p-4 text-sm font-semibold leading-6 text-paper">
+                New submissions are still accepted, but they are marked as Waitlist. A free review is not promised after the founding cohort is full.
+              </p>
+            ) : null}
 
             <div className="mt-6 rounded-lg border border-line bg-white/[0.045] p-5">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-pool">You'll receive</p>
@@ -52,16 +56,32 @@ export default function SubmitPage() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex w-full justify-center rounded-md bg-acid px-5 py-4 text-sm font-black text-ink transition hover:bg-paper sm:w-auto"
             >
-              Submit Your App
+              {cohortFull ? "Join the Waitlist" : "Submit Your App"}
             </Link>
             <p className="mt-3 text-xs leading-5 text-paper/[0.46]">
               If the embedded form does not load, use the button to open the secure Tally form directly.
             </p>
+
+            <div className="mt-6 rounded-lg border border-line bg-white/[0.045] p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-ember">Future pricing structure</p>
+              <div className="mt-4 space-y-3">
+                {futureReviewOffers.map((offer) => (
+                  <div key={offer.name} className="rounded-md border border-line bg-black/[0.20] p-4">
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="font-bold text-paper">{offer.name}</p>
+                      <p className="font-display text-2xl font-black text-acid">{offer.price}</p>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-paper/[0.62]">{offer.description}</p>
+                    <p className="mt-2 text-xs font-bold uppercase tracking-[0.18em] text-paper/[0.42]">Payments not enabled yet</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </section>
 
           <section className="overflow-hidden rounded-lg border border-line bg-white/[0.045] shadow-glow">
             <div className="flex items-center justify-between border-b border-line bg-black/[0.24] px-4 py-3">
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-paper/[0.50]">Live submission form</p>
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-paper/[0.50]">{cohortFull ? "Live waitlist form" : "Live submission form"}</p>
               <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-acid hover:text-paper">
                 Open form
               </Link>
@@ -81,7 +101,7 @@ export default function SubmitPage() {
                 rel="noopener noreferrer"
                 className="inline-flex rounded-md border border-line bg-white/[0.08] px-4 py-3 text-sm font-bold text-paper transition hover:border-acid hover:text-acid"
               >
-                Submit Your App
+                {cohortFull ? "Join the Waitlist" : "Submit Your App"}
               </Link>
             </div>
           </section>

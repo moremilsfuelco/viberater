@@ -1,6 +1,7 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Band } from "@/components/ui";
-import { founders, getFounder } from "@/lib/content";
+import { articles, founders, getFounder } from "@/lib/content";
 
 export function generateStaticParams() {
   return founders.map((founder) => ({ slug: founder.slug }));
@@ -45,6 +46,12 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
             </section>
           ))}
         </div>
+        <section className="mt-10 rounded-lg border border-line bg-white/[0.045] p-6">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-pool">First Article</p>
+          <h2 className="mt-3 font-display text-3xl font-bold">{articles[0].title}</h2>
+          <p className="mt-3 text-sm leading-6 text-paper/[0.68]">{articles[0].category} · {articles[0].date}</p>
+          <Link href={`/articles/${articles[0].slug}`} className="mt-5 inline-flex text-sm font-bold text-acid">Read article</Link>
+        </section>
       </Band>
     </main>
   );

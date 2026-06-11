@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LogoMark } from "@/components/ui";
+import { tallyUrl } from "@/lib/content";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://joinviberater.com"),
   title: {
     default: "Vibe Rater | Vibe-coded app reviews",
     template: "%s | Vibe Rater"
@@ -19,11 +21,11 @@ export const metadata: Metadata = {
 
 const nav = [
   ["Reviews", "/reviews"],
+  ["Articles", "/articles"],
   ["Founders", "/founders"],
-  ["Rankings", "/rankings"],
+  ["Vibe Score", "/vibe-score"],
   ["Best Apps", "/best-vibe-coded-apps"],
-  ["Newsletter", "/newsletter"],
-  ["Submit", "/submit"]
+  ["Newsletter", "/newsletter"]
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -49,27 +51,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
               ))}
             </nav>
-            <Link href="/submit" className="rounded-md bg-paper px-4 py-2 text-sm font-bold text-ink transition hover:bg-acid">
+            <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="rounded-md bg-paper px-4 py-2 text-sm font-bold text-ink transition hover:bg-acid">
               Submit Your App
             </Link>
           </div>
         </header>
         {children}
         <footer className="border-t border-line bg-black/[0.30]">
-          <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 text-sm text-paper/[0.64] sm:px-6 md:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 text-sm text-paper/[0.64] sm:px-6 md:grid-cols-[1.2fr_1fr_1fr_1fr] lg:px-8">
             <div>
               <p className="font-display text-lg font-bold text-paper">Vibe Rater</p>
               <p className="mt-2 max-w-md">Discover the next generation of AI-built startups before everyone else.</p>
             </div>
             <div className="flex flex-col gap-2">
-              <Link href="/best-vibe-coded-apps">Best vibe-coded apps</Link>
+              <Link href="/what-is-vibe-coding">What is vibe coding?</Link>
+              <Link href="/best-vibe-coding-tools">Best vibe coding tools</Link>
+              <Link href="/apps-built-with-ai">Apps built with AI</Link>
               <Link href="/apps-built-with-claude-code">Apps built with Claude Code</Link>
               <Link href="/apps-built-with-lovable">Apps built with Lovable</Link>
             </div>
             <div className="flex flex-col gap-2">
+              <Link href="/roast-my-app">Roast My App</Link>
+              <Link href="/ai-app-review-site">AI app review site</Link>
+              <Link href="/app-launch-teardowns">App launch teardowns</Link>
+              <Link href="/building-in-public">Building in public</Link>
+              <Link href="/founder-stories">Founder stories</Link>
+            </div>
+            <div className="flex flex-col gap-2">
               <Link href="/about">About</Link>
               <Link href="/newsletter">Newsletter</Link>
-              <Link href="/submit">Submit your app</Link>
+              <Link href={tallyUrl} target="_blank" rel="noopener noreferrer">Submit your app</Link>
             </div>
           </div>
         </footer>

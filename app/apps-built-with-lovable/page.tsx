@@ -1,7 +1,15 @@
-import { CategoryPage, categoryMetadata } from "@/components/category-page";
+import { SeoLandingPage } from "@/components/seo-page";
+import { getSeoPage, siteUrl } from "@/lib/content";
 
-export const metadata = categoryMetadata("apps-built-with-lovable");
+const page = getSeoPage("apps-built-with-lovable")!;
+
+export const metadata = {
+  title: page.title,
+  description: page.description,
+  alternates: { canonical: `${siteUrl}/${page.slug}` },
+  openGraph: { title: page.title, description: page.description, url: `${siteUrl}/${page.slug}`, type: "article" }
+};
 
 export default function Page() {
-  return <CategoryPage slug="apps-built-with-lovable" />;
+  return <SeoLandingPage page={page} />;
 }
