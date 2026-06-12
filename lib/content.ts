@@ -184,7 +184,7 @@ export const reviews: Review[] = [
     excerpt: "RaceIQ is live on the App Store, which immediately makes this review more interesting. Runners already obsess over race day. Now the question is whether the product earns enough trust to become part of the training loop instead of another motivational quote dispenser with a stopwatch.",
     stage: "Live on the App Store",
     category: "AI fitness",
-    appStoreUrl: "https://apps.apple.com/us/search?term=RaceIQ",
+    appStoreUrl: "https://apps.apple.com/us/app/raceiq-running-coach/id6764719754",
     tools: ["Expo", "Codex", "RevenueCat", "Supabase"],
     screenshots: [],
     submissionStatus: "published",
