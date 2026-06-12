@@ -1,7 +1,12 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { existsSync, readdirSync } from "fs";
+import path from "path";
 import { Band, ShipLog } from "@/components/ui";
 import { calculateVibeScore, getReview, reviews, scoreKeys, scoreLabel, scoreLabels, siteUrl, verdictLabel } from "@/lib/content";
+import type { Screenshot } from "@/lib/content";
+
+const screenshotExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
 
 export function generateStaticParams() {
   return reviews.map((review) => ({ slug: review.slug }));
@@ -48,6 +53,7 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
 
   const vibeScore = calculateVibeScore(review.scores);
   const scoreRows = scoreKeys.map((key) => [scoreLabels[key], review.scores[key]] as const);
+  const screenshots = getReviewScreenshots(review.slug, review.appName, review.screenshots);
 
   return (
     <main>
@@ -64,7 +70,7 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
               <Meta label="Built with" value={review.tools.join(", ")} />
             </div>
 
-            <ScreenshotGallery reviewName={review.appName} screenshots={review.screenshots} />
+            <ScreenshotGallery reviewName={review.appName} screenshots={screenshots} />
 
             <TextSection title="What It Is" body={review.narrative.whatItIs} />
             <TextSection title="First Impression" body={review.narrative.firstImpression} />
@@ -92,6 +98,36 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
       </Band>
     </main>
   );
+}
+
+function getReviewScreenshots(slug: string, appName: string, contentScreenshots: Screenshot[]) {
+  const folder = path.join(process.cwd(), "public", "reviews", slug);
+
+  if (!existsSync(folder)) {
+    return contentScreenshots;
+  }
+
+  const folderScreenshots = readdirSync(folder)
+    .filter((file) => screenshotExtensions.has(path.extname(file).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+    .map((file, index) => ({
+      src: `/reviews/${slug}/${file}`,
+      alt: `${appName} screenshot ${index + 1}`,
+      caption: humanizeScreenshotName(file)
+    }));
+
+  return [...contentScreenshots, ...folderScreenshots];
+}
+
+function humanizeScreenshotName(file: string) {
+  const name = path.basename(file, path.extname(file)).replace(/^\d+[-_ ]*/, "");
+  const words = name.replace(/[-_]+/g, " ").trim();
+
+  if (!words) {
+    return "Product screenshot";
+  }
+
+  return words.charAt(0).toUpperCase() + words.slice(1);
 }
 
 function Meta({ label, value }: { label: string; value: string }) {
