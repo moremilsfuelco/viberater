@@ -742,7 +742,7 @@ export function getEditorialArticlesByCategory(category: string) {
   return editorialArticles.filter((article) => article.category === category);
 }
 
-export const futureReviewOffers: ReviewOffer[] = [
+export const internalFutureReviewOffers: ReviewOffer[] = [
   {
     name: "Founder Review",
     price: "$49",
@@ -913,7 +913,7 @@ export const seoPages: SeoPage[] = [
     intro: "Get your AI-built app reviewed by someone who has been rejected by Apple, banned from Reddit, broken builds in production, and still keeps shipping.",
     specialNote: "Not vibrators. Vibe Rater. Different kind of brutally honest review.",
     sections: [
-      { heading: "Free for now", body: "Roast My App is free for now while Vibe Rater builds the founding cohort. Paid reviews will probably come later, but there is nothing to buy today." },
+      { heading: "Free for now", body: "Roast My App is free for now while Vibe Rater builds the founding cohort. Send the product in and I’ll look for the useful angle." },
       { heading: "Not mean for sport", body: "The feedback is blunt, but it is not mean for sport. The point is to help the product get clearer, sharper, and more useful." }
     ]
   },
@@ -991,7 +991,7 @@ export const seoPages: SeoPage[] = [
     intro: "AI founder interviews should be more than victory laps. Vibe Rater wants the mistake, the lesson, and the part that almost broke the founder's brain.",
     sections: [
       { heading: "What we ask", body: "Why they built it, what tools they used, what went wrong, what users misunderstood, and what they would fix next." },
-      { heading: "How to be considered", body: "Submit your app through the review queue. Interviews may become a paid format later, but right now the focus is finding builders with something real to say." }
+      { heading: "How to be considered", body: "Submit your app through the review queue. Right now the focus is finding builders with something real to say." }
     ]
   }
 ];

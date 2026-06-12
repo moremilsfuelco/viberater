@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Band, FounderSubmissionCard, FoundingCohortStatus, NewsletterSignup, ReviewCard, ScorePanel, SectionHeader, ShipLog, SubmitAppButton } from "@/components/ui";
-import { articles, buildingProjects, calculateVibeScore, editorialArticles, founders, morganBio, publishedReviews, scoreLabel, verdictLabel } from "@/lib/content";
+import { articles, buildingProjects, calculateVibeScore, editorialArticles, founders, morganBio, publishedReviews, scoreLabel, tallyUrl, verdictLabel } from "@/lib/content";
 
 export default function Home() {
   const topRated = [...publishedReviews].sort((a, b) => calculateVibeScore(b.scores) - calculateVibeScore(a.scores)).slice(0, 4);
@@ -115,14 +115,14 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <Link href="/submit" className="mt-6 inline-flex rounded-md bg-acid px-5 py-3 text-sm font-bold text-ink transition hover:bg-paper">Submit your startup</Link>
+        <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex rounded-md bg-acid px-5 py-3 text-sm font-bold text-ink transition hover:bg-paper">Submit your startup</Link>
       </Band>
 
       <Band className="bg-white/[0.035]">
         <SectionHeader kicker="Draft Queue" title="Founder lessons coming next" body="The first content queue is already aimed at distribution, App Store pain, and the part after AI makes the first build possible." />
         <div className="grid gap-4 md:grid-cols-3">
           {latestEditorial.map((article) => (
-            <Link key={article.slug} href={article.status === "published" ? `/articles/${article.slug}` : "/submit"} className="rounded-lg border border-line bg-ink p-5 transition hover:border-acid/[0.48]">
+            <Link key={article.slug} href={article.status === "published" ? `/articles/${article.slug}` : tallyUrl} target={article.status === "published" ? undefined : "_blank"} rel={article.status === "published" ? undefined : "noopener noreferrer"} className="rounded-lg border border-line bg-ink p-5 transition hover:border-acid/[0.48]">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-pool">{article.category} · {article.status}</p>
               <h3 className="mt-3 font-display text-2xl font-bold">{article.title}</h3>
               <p className="mt-3 text-sm leading-6 text-paper/[0.66]">{article.excerpt}</p>
@@ -197,7 +197,7 @@ export default function Home() {
         <div className="rounded-lg border border-line bg-ember p-8 text-ink md:p-10">
           <h2 className="font-display text-4xl font-black tracking-tight">Built something with AI? Submit it for review.</h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/[0.75]">Founders building with Claude Code, Codex, Lovable, Replit, Bolt, Cursor, Supabase, Expo, RevenueCat, and the rest of the new stack belong here.</p>
-          <Link href="/submit" className="mt-6 inline-flex rounded-md bg-ink px-5 py-3 text-sm font-bold text-paper">Submit Your Startup</Link>
+          <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex rounded-md bg-ink px-5 py-3 text-sm font-bold text-paper">Submit Your Startup</Link>
         </div>
       </Band>
     </main>

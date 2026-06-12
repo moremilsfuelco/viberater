@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { beehiivUrl, calculateVibeScore, getClaimedFounderReviewCount, isFoundingCohortFull, MAX_FREE_FOUNDERS, Review, scoreLabel, verdictLabel } from "@/lib/content";
+import { beehiivUrl, calculateVibeScore, getClaimedFounderReviewCount, isFoundingCohortFull, MAX_FREE_FOUNDERS, Review, scoreLabel, tallyUrl, verdictLabel } from "@/lib/content";
 
 export function LogoMark({ compact = false }: { compact?: boolean }) {
   return (
@@ -101,7 +101,7 @@ export function FounderSubmissionCard({ featured = false }: { featured?: boolean
           <p>Built something? Submit it and let&apos;s see what you&apos;ve got.</p>
         </div>
       </div>
-      <Link href="/submit" className="mt-6 inline-flex w-fit rounded-md bg-acid px-4 py-2 text-sm font-bold text-ink transition hover:bg-paper">
+      <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex w-fit rounded-md bg-acid px-4 py-2 text-sm font-bold text-ink transition hover:bg-paper">
         Submit Your App
       </Link>
     </article>
@@ -146,7 +146,7 @@ export function NewsletterSignup() {
 
 export function SubmitAppButton({ className = "", label = "Submit Your App" }: { className?: string; label?: string }) {
   return (
-    <Link href="/submit" className={className || "inline-flex rounded-md bg-acid px-5 py-3 text-sm font-bold text-ink transition hover:bg-paper"}>
+    <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className={className || "inline-flex rounded-md bg-acid px-5 py-3 text-sm font-bold text-ink transition hover:bg-paper"}>
       {label}
     </Link>
   );

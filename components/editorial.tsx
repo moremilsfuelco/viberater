@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Band, FounderSubmissionCard, SectionHeader } from "@/components/ui";
-import { EditorialArticle, getEditorialArticlesByCategory, getEditorialIndex } from "@/lib/content";
+import { EditorialArticle, getEditorialArticlesByCategory, getEditorialIndex, tallyUrl } from "@/lib/content";
 
 const internalLinks = [
-  ["Submit", "/submit"],
+  ["Submit", tallyUrl],
   ["Reviews", "/reviews"],
   ["Vibe Score", "/vibe-score"],
   ["Articles", "/articles"],
@@ -49,10 +49,10 @@ export function EditorialIndexPage({ slug }: { slug: string }) {
 export function EditorialCard({ article }: { article: EditorialArticle }) {
   const href = article.status === "published" && article.slug === "i-built-8-apps-with-ai"
     ? "/articles/i-built-8-apps-with-ai"
-    : "/submit";
+    : tallyUrl;
 
   return (
-    <Link href={href} className="group block rounded-lg border border-line bg-white/[0.045] p-5 shadow-glow transition hover:-translate-y-1 hover:border-acid/[0.42]">
+    <Link href={href} target={href === tallyUrl ? "_blank" : undefined} rel={href === tallyUrl ? "noopener noreferrer" : undefined} className="group block rounded-lg border border-line bg-white/[0.045] p-5 shadow-glow transition hover:-translate-y-1 hover:border-acid/[0.42]">
       <div className="flex flex-wrap items-center gap-2">
         <span className="rounded-full border border-line px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-paper/[0.54]">{article.category}</span>
         <span className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] ${article.status === "published" ? "bg-acid text-ink" : "bg-white/[0.08] text-paper/[0.52]"}`}>

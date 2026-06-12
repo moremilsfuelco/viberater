@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LogoMark } from "@/components/ui";
+import { tallyUrl } from "@/lib/content";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -66,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
               ))}
             </nav>
-            <Link href="/submit" className="rounded-md bg-paper px-4 py-2 text-sm font-bold text-ink transition hover:bg-acid">
+            <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="rounded-md bg-paper px-4 py-2 text-sm font-bold text-ink transition hover:bg-acid">
               Submit Your Startup
             </Link>
           </div>
@@ -96,7 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="flex flex-col gap-2">
               <Link href="/about">About</Link>
               <Link href="/newsletter">Newsletter</Link>
-              <Link href="/submit">Submit your startup</Link>
+              <Link href={tallyUrl} target="_blank" rel="noopener noreferrer">Submit your startup</Link>
               <Link href="/vibe-score">Vibe Score</Link>
             </div>
           </div>
