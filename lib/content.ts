@@ -38,6 +38,7 @@ export type Review = {
   excerpt: string;
   stage: string;
   category: string;
+  appStoreUrl?: string;
   tools: string[];
   screenshots: Screenshot[];
   submissionStatus: "published" | "accepted" | "waitlist" | "draft";
@@ -179,10 +180,11 @@ export const reviews: Review[] = [
     appName: "RaceIQ",
     founderSlug: "morgan-mitchell",
     founderName: "Morgan Mitchell",
-    whatItDoes: "RaceIQ is training intelligence for runners who want smarter race prep.",
-    excerpt: "RaceIQ has the cleanest founder-problem fit in the launch set. Runners already obsess over race day. The product just has to earn enough trust to be useful instead of becoming another motivational quote dispenser with a stopwatch.",
-    stage: "Currently being built",
+    whatItDoes: "RaceIQ is a live iOS app for runners who want smarter race prep.",
+    excerpt: "RaceIQ is live on the App Store, which immediately makes this review more interesting. Runners already obsess over race day. Now the question is whether the product earns enough trust to become part of the training loop instead of another motivational quote dispenser with a stopwatch.",
+    stage: "Live on the App Store",
     category: "AI fitness",
+    appStoreUrl: "https://apps.apple.com/us/search?term=RaceIQ",
     tools: ["Expo", "Codex", "RevenueCat", "Supabase"],
     screenshots: [],
     submissionStatus: "published",
@@ -205,30 +207,30 @@ export const reviews: Review[] = [
     },
     good: ["Clear user pain: runners want confidence before race day.", "Race prep creates a natural reason to return weekly.", "The product has room for a useful premium layer if recommendations are genuinely specific."],
     risk: ["Generic coaching advice would weaken trust quickly.", "Fitness guidance needs careful wording, boundaries, and product restraint."],
-    monetizationNotes: "RaceIQ has monetization potential if it helps runners make better training decisions, not just read generic motivation.",
+    monetizationNotes: "RaceIQ has monetization potential if it keeps helping runners make better training decisions, not just read generic motivation.",
     retentionNotes: "Retention depends on weekly planning, race countdowns, and whether runners trust the product enough to keep returning during a training block.",
-    distributionIdeas: "Start with runners training for a specific race distance, public build logs, race-prep content, and testing with actual runners.",
+    distributionIdeas: "Start with runners training for a specific race distance, public build logs, race-prep content, and proof from actual runners using the app.",
     founderAdvice: "Own one narrow race-prep promise first. Make RaceIQ excellent for one race distance before expanding the product surface.",
-    finalVerdict: "RaceIQ is the strongest launch review because the pain is emotional, recurring, and tied to a clear outcome.",
+    finalVerdict: "RaceIQ is the strongest launch review because it is live, the pain is emotional, and the product is tied to a clear outcome.",
     narrative: {
-      whatItIs: "RaceIQ is a race-prep app for runners who want smarter training guidance before they show up at the start line and realize vibes are not a pacing strategy. The useful promise is simple: help a runner understand what to do next, why it matters, and whether their race plan is actually sane.",
-      firstImpression: "This is the strongest idea in the launch batch because the problem is already emotional. Runners do not need to be convinced that race day matters. They are already checking the weather ten days out, overthinking shoe choice, and pretending their left calf is totally fine. RaceIQ can meet them in that moment if it stays practical.",
+      whatItIs: "RaceIQ is a live race-prep app for runners who want smarter training guidance before they show up at the start line and realize vibes are not a pacing strategy. The useful promise is simple: help a runner understand what to do next, why it matters, and whether their race plan is actually sane.",
+      firstImpression: "The important thing here is that RaceIQ is not a napkin sketch or a fake launch post. It is on the App Store, which means it has already survived the first boring but very real test: getting through Apple's gate and into a place where actual runners can download it. That matters.",
       whatsWorking: [
         "The user has a real deadline. Race day gives the product urgency without needing fake scarcity or founder theater.",
         "The weekly loop is obvious. Training plans, readiness checks, race countdowns, and post-run notes all give runners a reason to come back.",
-        "Morgan is close enough to the problem to know where the weird little anxieties live. That matters more than another generic AI coach voice telling people to believe in themselves."
+        "Morgan is close enough to the problem to know where the weird little anxieties live. That matters more now that the app is public, because real users do not care how elegant the roadmap looks."
       ],
       whatsRisky: [
         "Fitness advice is trust-sensitive. The second RaceIQ sounds like it is making medical claims or overpromising performance, the whole thing gets shaky.",
         "Generic AI encouragement would kill it. Runners can smell vague advice immediately, usually while wearing shoes that cost too much.",
-        "The app has to resist feature sprawl. Race prep is the wedge. Everything else can wait its turn."
+        "The app has to resist feature sprawl after launch. Race prep is the wedge. Everything else can wait its turn."
       ],
-      whatIdDoNext: "If it were mine, I would make RaceIQ embarrassingly good for one race scenario first. Pick a distance, pick a runner type, and make the product feel like it was built by someone who has actually panicked during a taper. I would also test every recommendation against real runner expectations before adding more surface area.",
+      whatIdDoNext: "If it were mine, I would use the live App Store version as the start of the real test, not the finish line. Pick a distance, pick a runner type, and make the app feel like it was built by someone who has actually panicked during a taper. Then watch what real runners misunderstand, ignore, or keep coming back to.",
       monetizationThoughts: "There is a believable paid path here if the product helps runners make better decisions during a training block. Premium can work around smarter plan adjustments, race-specific prep, and check-ins that feel earned. It cannot just be a paywall around generic motivation. Nobody needs a subscription to be told to hydrate and stay consistent.",
-      wouldIKeepBuildingIt: "Yes. This is the one I would keep pushing hardest because the pain is recurring, emotional, and tied to a clear outcome. The question is not whether runners care. They do. The question is whether RaceIQ can become trustworthy enough to sit next to the watch, the plan, and the mildly cursed spreadsheet.",
-      finalVerdict: "RaceIQ feels like a real product trying to escape the swamp of generic fitness apps. Keep it narrow, keep it honest, and make every recommendation prove it deserves to exist."
+      wouldIKeepBuildingIt: "Yes. Now that RaceIQ is public, this is the one I would keep pushing hardest because the pain is recurring, emotional, and tied to a clear outcome. The question is not whether runners care. They do. The question is whether RaceIQ can become trustworthy enough to sit next to the watch, the plan, and the mildly cursed spreadsheet.",
+      finalVerdict: "RaceIQ feels like a real product trying to escape the swamp of generic fitness apps. It is live, it has a clear user, and it has a reason to exist. Keep it narrow, keep it honest, and make every recommendation prove it deserves to be in a runner's week."
     },
-    shipLogs: ["Build provenance became part of the product lesson.", "RevenueCat setup exposed how much polish purchase flows need.", "The best feature ideas were also the ones that needed the most restraint."]
+    shipLogs: ["Getting onto the App Store is not the finish line, but it is a real line.", "RevenueCat setup exposed how much polish purchase flows need.", "The best feature ideas were also the ones that needed the most restraint."]
   },
   {
     slug: "hydropal",
@@ -359,7 +361,7 @@ export const founders: Founder[] = [
 ];
 
 export const buildingProjects: BuildingProject[] = [
-  { name: "RaceIQ", status: "Currently being built", description: "AI-powered race preparation and training intelligence for runners.", tools: ["Expo", "Codex", "RevenueCat", "Supabase"] },
+  { name: "RaceIQ", status: "Live on the App Store", description: "AI-powered race preparation and training intelligence for runners.", tools: ["Expo", "Codex", "RevenueCat", "Supabase"] },
   { name: "HydroPal", status: "Currently being built", description: "A hydration companion focused on daily habit formation.", tools: ["Lovable", "Cursor", "Supabase"] },
   { name: "DoughBuddy", status: "Currently being built", description: "AI help for home bakers improving bread, recipes, and baking logs.", tools: ["Claude Code", "Next.js", "Supabase"] },
   { name: "Athlo", status: "Currently being built", description: "A sports and fitness product in the Vibe Rater build-in-public portfolio.", tools: ["Replit", "Expo", "Codex"] },
@@ -694,7 +696,7 @@ export const seoPages: SeoPage[] = [
     intro: "Building in public is not just posting wins. It is admitting when Apple rejects the build, Reddit hates the post, or the feature you loved makes no sense to users.",
     sections: [
       { heading: "What gets shared", body: "Vibe Rater shares founder stories, product reviews, launch notes, App Store lessons, and the unglamorous parts of shipping." },
-      { heading: "Current build portfolio", body: "Morgan Mitchell is currently building RaceIQ, HydroPal, DoughBuddy, Athlo, ClaimCheck, BeanQuest, DiscMode, and Vibe Rater." }
+      { heading: "Current build portfolio", body: "RaceIQ is live on the App Store. Morgan Mitchell is also building HydroPal, DoughBuddy, Athlo, ClaimCheck, BeanQuest, DiscMode, and Vibe Rater in public." }
     ]
   },
   {

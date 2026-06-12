@@ -122,12 +122,12 @@ export default function Home() {
             </div>
             <Link href={`/founders/${spotlight.slug}`} className="mt-6 inline-flex text-sm font-bold text-acid">Read profile</Link>
           </div>
-          <ShipLog items={["Cut the pretend founder stuff before launch.", "Swapped the old submit flow for the live Tally form.", "Reworked Vibe Rater around real projects currently being built.", "Kept the reviews grounded: no invented revenue, traction, or founder stories."]} />
+          <ShipLog items={["Cut the pretend founder stuff before launch.", "Swapped the old submit flow for the live Tally form.", "Reworked Vibe Rater around real projects and founder submissions.", "Kept the reviews grounded: no invented revenue, traction, or founder stories."]} />
         </div>
       </Band>
 
       <Band className="bg-white/[0.035]">
-        <SectionHeader kicker="Building in Public" title="Projects currently being built" body="These are Morgan Mitchell projects in the Vibe Rater orbit. RaceIQ is the only published launch review; the rest are still being built." />
+        <SectionHeader kicker="Building in Public" title="Projects in the Vibe Rater orbit" body="RaceIQ is live on the App Store and is the only published launch review. The rest are still being built in public." />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {buildingProjects.map((project) => (
             <article key={project.name} className="rounded-lg border border-line bg-ink p-5">

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { existsSync, readdirSync } from "fs";
 import path from "path";
@@ -70,6 +71,12 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
               <Meta label="Built with" value={review.tools.join(", ")} />
             </div>
 
+            {review.appStoreUrl ? (
+              <Link href={review.appStoreUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex rounded-md bg-acid px-5 py-3 text-sm font-bold text-ink transition hover:bg-paper">
+                Download on the App Store
+              </Link>
+            ) : null}
+
             <ScreenshotGallery reviewName={review.appName} screenshots={screenshots} />
 
             <TextSection title="What It Is" body={review.narrative.whatItIs} />
@@ -91,6 +98,11 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
                 <div><dt className="text-paper/[0.42]">Stage</dt><dd>{review.stage}</dd></div>
                 <div><dt className="text-paper/[0.42]">Category</dt><dd>{review.category}</dd></div>
               </dl>
+              {review.appStoreUrl ? (
+                <Link href={review.appStoreUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex w-full justify-center rounded-md bg-acid px-4 py-2 text-sm font-bold text-ink transition hover:bg-paper">
+                  Download on the App Store
+                </Link>
+              ) : null}
             </div>
             <ShipLog items={review.shipLogs} />
           </aside>
