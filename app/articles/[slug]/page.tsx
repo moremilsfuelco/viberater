@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 import { Band } from "@/components/ui";
-import { articles, getArticle } from "@/lib/content";
+import { articles, getArticle, siteUrl } from "@/lib/content";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -13,7 +13,34 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = getArticle(slug);
   return {
     title: article?.title ?? "Article",
-    description: article?.excerpt
+    description: article?.excerpt,
+    openGraph: article
+      ? {
+          title: article.title,
+          description: article.excerpt,
+          url: `${siteUrl}/articles/${article.slug}`,
+          type: "article",
+          siteName: "Vibe Rater",
+          publishedTime: article.date,
+          authors: [article.author],
+          images: [
+            {
+              url: "/opengraph-image",
+              width: 1200,
+              height: 630,
+              alt: "Vibe Rater - We Rate The Apps People Built With Vibes"
+            }
+          ]
+        }
+      : undefined,
+    twitter: article
+      ? {
+          card: "summary_large_image",
+          title: article.title,
+          description: article.excerpt,
+          images: ["/opengraph-image"]
+        }
+      : undefined
   };
 }
 

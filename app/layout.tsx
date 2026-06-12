@@ -15,7 +15,23 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vibe Rater",
     description: "Discover the next generation of AI-built startups before everyone else.",
-    type: "website"
+    url: "https://joinviberater.com",
+    siteName: "Vibe Rater",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Vibe Rater - We Rate The Apps People Built With Vibes"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vibe Rater",
+    description: "Founder-led AI startup reviews for apps people built with vibes.",
+    images: ["/opengraph-image"]
   }
 };
 

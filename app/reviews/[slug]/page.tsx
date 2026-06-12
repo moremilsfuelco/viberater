@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Band, ShipLog } from "@/components/ui";
-import { calculateVibeScore, getReview, reviews, scoreKeys, scoreLabel, scoreLabels, verdictLabel } from "@/lib/content";
+import { calculateVibeScore, getReview, reviews, scoreKeys, scoreLabel, scoreLabels, siteUrl, verdictLabel } from "@/lib/content";
 
 export function generateStaticParams() {
   return reviews.map((review) => ({ slug: review.slug }));
@@ -12,7 +12,32 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const review = getReview(slug);
   return {
     title: review ? `${review.appName} Review` : "Review",
-    description: review?.whatItDoes
+    description: review?.excerpt ?? review?.whatItDoes,
+    openGraph: review
+      ? {
+          title: `${review.appName} Review`,
+          description: review.excerpt,
+          url: `${siteUrl}/reviews/${review.slug}`,
+          type: "article",
+          siteName: "Vibe Rater",
+          images: [
+            {
+              url: "/opengraph-image",
+              width: 1200,
+              height: 630,
+              alt: "Vibe Rater - We Rate The Apps People Built With Vibes"
+            }
+          ]
+        }
+      : undefined,
+    twitter: review
+      ? {
+          card: "summary_large_image",
+          title: `${review.appName} Review`,
+          description: review.excerpt,
+          images: ["/opengraph-image"]
+        }
+      : undefined
   };
 }
 
