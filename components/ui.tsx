@@ -90,6 +90,24 @@ export function ReviewCard({ review, featured = false }: { review: Review; featu
   );
 }
 
+export function FounderSubmissionCard({ featured = false }: { featured?: boolean }) {
+  return (
+    <article className={`flex min-h-full flex-col justify-between rounded-lg border border-dashed border-acid/[0.46] bg-acid/[0.08] p-5 shadow-glow ${featured ? "md:p-7" : ""}`}>
+      <div>
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-acid">Founder submission</p>
+        <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-paper">This Spot Is Open</h3>
+        <div className="mt-4 space-y-3 text-sm leading-6 text-paper/[0.72]">
+          <p>I can keep reviewing my own apps, but that&apos;s a little weird.</p>
+          <p>Built something? Submit it and let&apos;s see what you&apos;ve got.</p>
+        </div>
+      </div>
+      <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex w-fit rounded-md bg-acid px-4 py-2 text-sm font-bold text-ink transition hover:bg-paper">
+        Submit Your App
+      </Link>
+    </article>
+  );
+}
+
 export function Band({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <section className={`px-4 py-14 sm:px-6 lg:px-8 ${className}`}><div className="mx-auto max-w-7xl">{children}</div></section>;
 }

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { articles, founders, reviews, seoPages, siteUrl } from "@/lib/content";
+import { articles, founders, publishedReviews, seoPages, siteUrl } from "@/lib/content";
 
 const staticRoutes = [
   "",
@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...seoPages.map((page) => `${siteUrl}/${page.slug}`),
     ...articles.map((article) => `${siteUrl}/articles/${article.slug}`),
     ...founders.map((founder) => `${siteUrl}/founders/${founder.slug}`),
-    ...reviews.map((review) => `${siteUrl}/reviews/${review.slug}`)
+    ...publishedReviews.map((review) => `${siteUrl}/reviews/${review.slug}`)
   ];
 
   return Array.from(new Set(routes)).map((url) => ({

@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Band, FoundingCohortStatus, NewsletterSignup, ReviewCard, ScorePanel, SectionHeader, ShipLog, SubmitAppButton } from "@/components/ui";
-import { articles, buildingProjects, calculateVibeScore, founders, morganBio, reviews, scoreLabel, tallyUrl, verdictLabel } from "@/lib/content";
+import { Band, FounderSubmissionCard, FoundingCohortStatus, NewsletterSignup, ReviewCard, ScorePanel, SectionHeader, ShipLog, SubmitAppButton } from "@/components/ui";
+import { articles, buildingProjects, calculateVibeScore, founders, morganBio, publishedReviews, scoreLabel, tallyUrl, verdictLabel } from "@/lib/content";
 
 export default function Home() {
-  const topRated = [...reviews].sort((a, b) => calculateVibeScore(b.scores) - calculateVibeScore(a.scores)).slice(0, 4);
-  const featured = reviews[0];
+  const topRated = [...publishedReviews].sort((a, b) => calculateVibeScore(b.scores) - calculateVibeScore(a.scores)).slice(0, 4);
+  const featured = publishedReviews[0];
   const spotlight = founders[0];
   const featuredArticle = articles[0];
   const hasFeaturedArticle = Boolean(featuredArticle?.body?.trim());
@@ -37,7 +37,7 @@ export default function Home() {
                 <Link href="/reviews" className="rounded-md border border-line bg-white/[0.08] px-5 py-3 text-center text-sm font-bold text-paper transition hover:border-paper/[0.40]">Read Reviews</Link>
               </div>
               <div className="mt-8 grid max-w-2xl gap-3 text-sm text-paper/[0.68] sm:grid-cols-3">
-                <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">{reviews.length}</strong>Launch reviews</div>
+                <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">{publishedReviews.length}</strong>Launch review</div>
                 <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">8-part</strong>Vibe Score</div>
                 <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">0</strong>Invented revenue claims</div>
               </div>
@@ -45,7 +45,7 @@ export default function Home() {
                 <FoundingCohortStatus />
               </div>
             </div>
-            <ScorePanel review={featured} />
+            {featured ? <ScorePanel review={featured} /> : <FounderSubmissionCard featured />}
           </div>
           <div className="mt-10 border-y border-line bg-black/[0.26] px-4 py-4">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -78,9 +78,11 @@ export default function Home() {
       ) : null}
 
       <Band>
-        <SectionHeader kicker="Launch Reviews" title="The first apps on the board" body="The launch set starts with Morgan Mitchell’s own projects. No made-up traction, no imaginary revenue, no pretend founder mythology." />
+        <SectionHeader kicker="Launch Reviews" title="The first apps on the board" body="RaceIQ is the first published review. The next spots are for founders building something real enough to take feedback." />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {reviews.map((review) => <ReviewCard key={review.slug} review={review} />)}
+          {publishedReviews.map((review) => <ReviewCard key={review.slug} review={review} />)}
+          <FounderSubmissionCard />
+          <FounderSubmissionCard />
         </div>
       </Band>
 
@@ -102,6 +104,7 @@ export default function Home() {
               </div>
             </Link>
           )})}
+          <FounderSubmissionCard />
         </div>
         <Link href="/vibe-score" className="mt-6 inline-flex text-sm font-bold text-acid">What is a Vibe Score?</Link>
       </Band>
@@ -124,7 +127,7 @@ export default function Home() {
       </Band>
 
       <Band className="bg-white/[0.035]">
-        <SectionHeader kicker="Building in Public" title="Projects currently being built" body="These are Morgan Mitchell projects in the Vibe Rater orbit. Only RaceIQ, HydroPal, and DoughBuddy are launch reviews today; the rest are marked as currently being built." />
+        <SectionHeader kicker="Building in Public" title="Projects currently being built" body="These are Morgan Mitchell projects in the Vibe Rater orbit. RaceIQ is the only published launch review; the rest are still being built." />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {buildingProjects.map((project) => (
             <article key={project.name} className="rounded-lg border border-line bg-ink p-5">

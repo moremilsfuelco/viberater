@@ -3,13 +3,13 @@ import { notFound } from "next/navigation";
 import { existsSync, readdirSync } from "fs";
 import path from "path";
 import { Band, ShipLog } from "@/components/ui";
-import { calculateVibeScore, getReview, reviews, scoreKeys, scoreLabel, scoreLabels, siteUrl, verdictLabel } from "@/lib/content";
+import { calculateVibeScore, getReview, publishedReviews, scoreKeys, scoreLabel, scoreLabels, siteUrl, verdictLabel } from "@/lib/content";
 import type { Screenshot } from "@/lib/content";
 
 const screenshotExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
 
 export function generateStaticParams() {
-  return reviews.map((review) => ({ slug: review.slug }));
+  return publishedReviews.map((review) => ({ slug: review.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {

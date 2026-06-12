@@ -20,7 +20,7 @@ export default function NewsletterPage() {
               <div className="mt-6 grid gap-3 text-sm text-paper/[0.70] md:grid-cols-2">
                 <NewsletterItem label="App of the Week" value={issue.appOfWeek} />
                 <NewsletterItem label="Founder of the Week" value={issue.founderOfWeek} />
-                <NewsletterItem label="Vibe-Coded Launches" value="RaceIQ, HydroPal, DoughBuddy" />
+                <NewsletterItem label="Vibe-Coded Launches" value="RaceIQ, plus open slots for founder submissions" />
                 <NewsletterItem label="Latest Article" value={articles[0].title} />
                 <NewsletterItem label="AI Tool of the Week" value={issue.toolOfWeek} />
                 <NewsletterItem label="What We're Building" value={issue.building} wide />

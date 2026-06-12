@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Band, ReviewCard, SectionHeader } from "@/components/ui";
-import { buildingProjects, categoryPages, getCategoryPage, reviews, tallyUrl } from "@/lib/content";
+import { buildingProjects, categoryPages, getCategoryPage, publishedReviews, tallyUrl } from "@/lib/content";
 
 export function categoryMetadata(slug: string) {
   const page = getCategoryPage(slug);
@@ -15,7 +15,7 @@ export function CategoryPage({ slug }: { slug: string }) {
   const page = getCategoryPage(slug);
   if (!page) return null;
 
-  const filtered = reviews.filter((review) => {
+  const filtered = publishedReviews.filter((review) => {
     if (slug.includes("fitness")) return review.category.toLowerCase().includes("fitness");
     if (slug.includes("productivity")) return review.category.toLowerCase().includes("productivity");
     if (slug.includes("lovable")) return review.tools.includes("Lovable");

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Band, SectionHeader } from "@/components/ui";
-import { calculateVibeScore, reviews, scoreLabel, verdictLabel } from "@/lib/content";
+import { calculateVibeScore, publishedReviews, scoreLabel, verdictLabel } from "@/lib/content";
 
 export const metadata = {
   title: "Launch Review Scores",
@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 export default function RankingsPage() {
-  const ranked = [...reviews].sort((a, b) => calculateVibeScore(b.scores) - calculateVibeScore(a.scores));
+  const ranked = [...publishedReviews].sort((a, b) => calculateVibeScore(b.scores) - calculateVibeScore(a.scores));
   return (
     <main>
       <Band>

@@ -40,7 +40,7 @@ export type Review = {
   category: string;
   tools: string[];
   screenshots: Screenshot[];
-  submissionStatus: "published" | "accepted" | "waitlist";
+  submissionStatus: "published" | "accepted" | "waitlist" | "draft";
   scores: CoreScores;
   signals: {
     aiSlopRisk: string;
@@ -241,7 +241,7 @@ export const reviews: Review[] = [
     category: "AI wellness",
     tools: ["Lovable", "Cursor", "Supabase"],
     screenshots: [],
-    submissionStatus: "published",
+    submissionStatus: "draft",
     scores: {
       productClarity: 8,
       usefulness: 7,
@@ -297,7 +297,7 @@ export const reviews: Review[] = [
     category: "AI food",
     tools: ["Claude Code", "Next.js", "Supabase"],
     screenshots: [],
-    submissionStatus: "published",
+    submissionStatus: "draft",
     scores: {
       productClarity: 8,
       usefulness: 8,
@@ -711,7 +711,7 @@ export const seoPages: SeoPage[] = [
 ];
 
 export function getReview(slug: string) {
-  return reviews.find((review) => review.slug === slug);
+  return publishedReviews.find((review) => review.slug === slug);
 }
 
 export function getFounder(slug: string) {
@@ -737,3 +737,5 @@ export function getClaimedFounderReviewCount() {
 export function isFoundingCohortFull() {
   return getClaimedFounderReviewCount() >= MAX_FREE_FOUNDERS;
 }
+
+export const publishedReviews = reviews.filter((review) => review.submissionStatus === "published");
