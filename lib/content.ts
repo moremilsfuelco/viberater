@@ -100,6 +100,56 @@ export type Article = {
   body: string;
 };
 
+export type EditorialTemplate =
+  | "App Review"
+  | "Startup Roast"
+  | "Founder Breakdown"
+  | "Why X Won"
+  | "Why X Failed"
+  | "App Store Lessons"
+  | "AI Builder Diary"
+  | "Startup Directory Listing";
+
+export type EditorialArticle = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  category: string;
+  tags: string[];
+  founderName?: string;
+  startupName?: string;
+  appName?: string;
+  template: EditorialTemplate;
+  status: "published" | "draft";
+  rating?: {
+    product: number;
+    positioning: number;
+    design: number;
+    distribution: number;
+    monetization: number;
+    retention: number;
+    overall: number;
+  };
+  featuredImage?: string;
+  seoTitle: string;
+  seoDescription: string;
+  bodySections: Array<{
+    heading: string;
+    body: string;
+  }>;
+};
+
+export type EditorialIndex = {
+  slug: string;
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  category: string;
+  emptyTitle: string;
+  emptyBody: string;
+};
+
 export type ReviewOffer = {
   name: string;
   price: "$49" | "$99" | "$199";
@@ -124,14 +174,13 @@ export const morganBio =
   "Morgan Mitchell is a software engineer, runner, and indie founder building AI-powered products in public. Current projects include RaceIQ, HydroPal, DoughBuddy, Athlo, ClaimCheck, BeanQuest, DiscMode, and Vibe Rater. Vibe Rater exists to review AI-built apps, document the reality of building with AI tools, and help founders create products people actually use.";
 
 export const scoringFramework = [
-  ["Product Clarity", "Can a visitor understand what the app does within 10 seconds?"],
-  ["Usefulness", "Does it solve a real problem or is it just AI slapped onto something?"],
-  ["Design / UX", "Does it feel polished, usable, and intentional?"],
-  ["Retention Potential", "Would someone come back after the first use?"],
-  ["Monetization Potential", "Is there a believable path to revenue?"],
-  ["Differentiation", "Why this app instead of an existing alternative?"],
-  ["Trust & Safety", "Does the app feel legitimate, safe, and not sketchy?"],
-  ["Founder-Market Fit", "Does the founder seem close enough to the problem to build something useful?"]
+  ["Product", "Is the app clear, useful, and close enough to a real problem?"],
+  ["Positioning", "Can a stranger understand who it is for and why it matters?"],
+  ["Design", "Does it feel polished, usable, and intentional?"],
+  ["Distribution", "Is there a believable path to attention beyond hoping the internet notices?"],
+  ["Monetization", "Is there a sane reason someone might eventually pay?"],
+  ["Retention", "Would anyone come back after the first try?"],
+  ["Overall Vibe Score", "The gut-check number after the review, not a replacement for the review."]
 ] as const;
 
 export const scoreKeys: Array<keyof CoreScores> = [
@@ -458,6 +507,241 @@ export const newsletterIssues = [
   }
 ];
 
+export const editorialTemplates: Array<{
+  name: EditorialTemplate;
+  description: string;
+  sections: string[];
+}> = [
+  {
+    name: "App Review",
+    description: "A direct review of what the app does, where it works, where it breaks, and whether the Vibe Score holds up.",
+    sections: ["What it is", "First impression", "What works", "What is risky", "Vibe Score", "What I would do next"]
+  },
+  {
+    name: "Startup Roast",
+    description: "A useful roast for founders who want attention and sharper positioning, not polite fog.",
+    sections: ["The promise", "The confusion", "The roast", "The useful fix", "What to test next"]
+  },
+  {
+    name: "Founder Breakdown",
+    description: "A founder story that focuses on decisions, mistakes, lessons, and what the builder is trying to prove.",
+    sections: ["Founder", "Why this exists", "What went wrong", "What changed", "What comes next"]
+  },
+  {
+    name: "Why X Won",
+    description: "A breakdown of why a product, launch, or positioning choice worked.",
+    sections: ["The bet", "Why it landed", "Distribution", "Product lesson", "Founder takeaway"]
+  },
+  {
+    name: "Why X Failed",
+    description: "A postmortem-style teardown for products or launches that missed the mark.",
+    sections: ["The promise", "Where it broke", "Distribution gap", "What could have saved it", "Lesson"]
+  },
+  {
+    name: "App Store Lessons",
+    description: "A practical piece about App Store review, mobile launch pain, subscriptions, screenshots, and rejected builds.",
+    sections: ["What happened", "Why it mattered", "The fix", "What founders should check"]
+  },
+  {
+    name: "AI Builder Diary",
+    description: "A build-in-public entry about what actually happened while shipping with AI tools.",
+    sections: ["What I tried", "What broke", "What worked", "What I am doing next"]
+  },
+  {
+    name: "Startup Directory Listing",
+    description: "A concise listing for founders who need discoverability, context, and a useful backlink.",
+    sections: ["What it does", "Who it is for", "Built with", "Why it is interesting", "Links"]
+  }
+];
+
+export const editorialArticles: EditorialArticle[] = [
+  {
+    title: "I Built 8 Apps With AI. Here’s What Actually Happened",
+    slug: "i-built-8-apps-with-ai",
+    excerpt: "The real story behind the first Vibe Rater founder essay: shipping got easier, getting people to care did not.",
+    category: "AI Builder Diary",
+    tags: ["AI-built apps", "distribution", "building in public"],
+    founderName: "Morgan Mitchell",
+    appName: "Vibe Rater",
+    template: "AI Builder Diary",
+    status: "published",
+    seoTitle: "I Built 8 Apps With AI",
+    seoDescription: "Morgan Mitchell on building apps with AI, App Store pain, Reddit lessons, and why distribution is still hard.",
+    bodySections: [
+      { heading: "Published essay", body: "This essay is live in the Vibe Rater article archive." }
+    ]
+  },
+  {
+    title: "Build It and They Will Come Is Terrible Startup Advice",
+    slug: "build-it-and-they-will-come-is-terrible-startup-advice",
+    excerpt: "A draft about why shipping the product is only the first problem.",
+    category: "Distribution & Marketing",
+    tags: ["distribution", "startup advice"],
+    template: "Why X Failed",
+    status: "draft",
+    seoTitle: "Build It and They Will Come Is Terrible Startup Advice",
+    seoDescription: "A Vibe Rater draft on why founders need distribution before the product gets ignored.",
+    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
+  },
+  {
+    title: "Your App Doesn’t Have a Feature Problem. It Has a Distribution Problem.",
+    slug: "your-app-doesnt-have-a-feature-problem",
+    excerpt: "A draft on the trap of adding features instead of finding users.",
+    category: "Distribution & Marketing",
+    tags: ["distribution", "positioning"],
+    template: "Why X Failed",
+    status: "draft",
+    seoTitle: "Your App Has a Distribution Problem",
+    seoDescription: "A founder-focused article about why more features rarely fix a missing distribution loop.",
+    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
+  },
+  {
+    title: "The App Store Is Not a Marketing Plan",
+    slug: "the-app-store-is-not-a-marketing-plan",
+    excerpt: "A draft for founders who think approval means attention.",
+    category: "App Store Lessons",
+    tags: ["App Store", "mobile apps"],
+    template: "App Store Lessons",
+    status: "draft",
+    seoTitle: "The App Store Is Not a Marketing Plan",
+    seoDescription: "A Vibe Rater draft about why App Store approval is not the same thing as distribution.",
+    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
+  },
+  {
+    title: "Why Your First 100 Users Are Harder Than Building The Product",
+    slug: "why-your-first-100-users-are-harder",
+    excerpt: "A draft about the painfully manual part after launch.",
+    category: "Founder Breakdowns",
+    tags: ["first users", "founder lessons"],
+    template: "Founder Breakdown",
+    status: "draft",
+    seoTitle: "Why Your First 100 Users Are Harder Than Building The Product",
+    seoDescription: "A founder breakdown on getting early users after the product exists.",
+    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
+  },
+  {
+    title: "AI Made Building Easy. It Did Not Make Distribution Easy",
+    slug: "ai-made-building-easy-not-distribution",
+    excerpt: "A draft about what AI tools changed and what they definitely did not.",
+    category: "AI-Built Apps",
+    tags: ["AI tools", "distribution"],
+    template: "AI Builder Diary",
+    status: "draft",
+    seoTitle: "AI Made Building Easy. Distribution Is Still Hard.",
+    seoDescription: "A Vibe Rater draft on the new AI builder stack and the old distribution problem.",
+    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
+  },
+  {
+    title: "Everyone Wants Passive Income Until They Have To Get Customers",
+    slug: "everyone-wants-passive-income-until-customers",
+    excerpt: "A draft on the part of indie software nobody wants to put in the screenshot.",
+    category: "Distribution & Marketing",
+    tags: ["customers", "indie apps"],
+    template: "Why X Failed",
+    status: "draft",
+    seoTitle: "Everyone Wants Passive Income Until They Have To Get Customers",
+    seoDescription: "A blunt Vibe Rater draft about customers, distribution, and the passive income fantasy.",
+    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
+  },
+  {
+    title: "I Thought Coding Was The Hard Part. I Was Wrong.",
+    slug: "i-thought-coding-was-the-hard-part",
+    excerpt: "A draft about what happens after the app compiles.",
+    category: "AI Builder Diary",
+    tags: ["shipping", "AI builders"],
+    template: "AI Builder Diary",
+    status: "draft",
+    seoTitle: "I Thought Coding Was The Hard Part. I Was Wrong.",
+    seoDescription: "A Vibe Rater draft on why shipping, marketing, and retention hurt more than code.",
+    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
+  },
+  {
+    title: "How To Make People Care About Your App",
+    slug: "how-to-make-people-care-about-your-app",
+    excerpt: "A draft about positioning, proof, and getting out of your own product bubble.",
+    category: "Founder Breakdowns",
+    tags: ["positioning", "marketing"],
+    template: "Founder Breakdown",
+    status: "draft",
+    seoTitle: "How To Make People Care About Your App",
+    seoDescription: "A Vibe Rater draft about positioning an app so real users understand why it matters.",
+    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
+  },
+  {
+    title: "Why Founders Should Ask For Roasts, Not Compliments",
+    slug: "why-founders-should-ask-for-roasts",
+    excerpt: "A draft about why useful criticism beats polite launch replies.",
+    category: "Startup Roasts",
+    tags: ["roasts", "feedback"],
+    template: "Startup Roast",
+    status: "draft",
+    seoTitle: "Why Founders Should Ask For Roasts, Not Compliments",
+    seoDescription: "A Vibe Rater draft on why founders need sharper feedback before they waste another launch.",
+    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
+  }
+];
+
+export const editorialIndexes: EditorialIndex[] = [
+  {
+    slug: "startup-roasts",
+    title: "Startup Roasts",
+    description: "Blunt, useful startup roasts for founders who want sharper positioning and attention.",
+    h1: "Startup Roasts",
+    intro: "A roast should make the product better, not just make the crowd laugh. This is where Vibe Rater tears into positioning, clarity, and the stuff founders are too close to see.",
+    category: "Startup Roasts",
+    emptyTitle: "No published roasts yet",
+    emptyBody: "The roast chair is open. Submit something real and we may put it under the lights."
+  },
+  {
+    slug: "founder-breakdowns",
+    title: "Founder Breakdowns",
+    description: "Founder lessons, build stories, and breakdowns from people shipping apps.",
+    h1: "Founder Breakdowns",
+    intro: "Founder breakdowns are about the decisions behind the product: what worked, what broke, and what the builder learned the expensive way.",
+    category: "Founder Breakdowns",
+    emptyTitle: "No founder breakdowns yet",
+    emptyBody: "Submit your startup if you want the story behind the product to be part of the feature."
+  },
+  {
+    slug: "app-store-lessons",
+    title: "App Store Lessons",
+    description: "Lessons from App Store launches, rejections, screenshots, subscriptions, and mobile app review.",
+    h1: "App Store Lessons",
+    intro: "The App Store is where optimism meets metadata, screenshots, subscriptions, and the occasional rejection that somehow teaches you a useful lesson.",
+    category: "App Store Lessons",
+    emptyTitle: "No App Store lessons yet",
+    emptyBody: "RaceIQ has already provided a few scars. More pieces will land as the launch notes turn into proper articles."
+  },
+  {
+    slug: "ai-built-apps",
+    title: "AI-Built Apps",
+    description: "Reviews, diaries, and features about apps built with AI tools.",
+    h1: "AI-Built Apps",
+    intro: "AI made it easier to build. It did not magically create trust, retention, positioning, or a reason for strangers to care.",
+    category: "AI-Built Apps",
+    emptyTitle: "No AI-built app features yet",
+    emptyBody: "The queue is open for founders building with Claude Code, Codex, Cursor, Lovable, Bolt, Replit, Supabase, and whatever tool broke your build last night."
+  },
+  {
+    slug: "distribution",
+    title: "Distribution & Marketing",
+    description: "Vibe Rater essays about marketing, positioning, launch channels, and getting users.",
+    h1: "Distribution & Marketing",
+    intro: "Most apps do not die because the button needed another hover state. They die because nobody found them, understood them, or cared enough to come back.",
+    category: "Distribution & Marketing",
+    emptyTitle: "No distribution essays yet",
+    emptyBody: "Drafts are in the queue. Founders can submit launches that need a sharper distribution read."
+  }
+];
+
+export function getEditorialIndex(slug: string) {
+  return editorialIndexes.find((index) => index.slug === slug);
+}
+
+export function getEditorialArticlesByCategory(category: string) {
+  return editorialArticles.filter((article) => article.category === category);
+}
+
 export const futureReviewOffers: ReviewOffer[] = [
   {
     name: "Founder Review",
@@ -480,7 +764,7 @@ export const futureReviewOffers: ReviewOffer[] = [
 ];
 
 export const categoryPages = [
-  { slug: "best-vibe-coded-apps", title: "Best Vibe-Coded Apps", dek: "A living list of AI-built apps reviewed with a clear Vibe Score framework.", keywords: "best vibe coded apps, vibe coding startups, indie ai startups" },
+  { slug: "best-vibe-coded-apps", title: "Best Vibe-Coded Apps", dek: "A living list of AI-built apps reviewed with a clear Vibe Score.", keywords: "best vibe coded apps, vibe coding startups, indie ai startups" },
   { slug: "apps-built-with-lovable", title: "Apps Built With Lovable", dek: "Reviews and build notes from apps made with Lovable and the modern AI founder stack.", keywords: "apps built with lovable, lovable app reviews, vibe coded app reviews" },
   { slug: "apps-built-with-claude-code", title: "Apps Built With Claude Code", dek: "A directory of startups, prototypes, and software products built with Claude Code.", keywords: "apps built with claude code, ai founder stories, indie ai startups" },
   { slug: "apps-built-with-replit", title: "Apps Built With Replit", dek: "Launches from builders using Replit to turn ideas into live products.", keywords: "apps built with replit, vibe coding startups" },
@@ -530,7 +814,7 @@ export const seoPages: SeoPage[] = [
     intro: "Cursor can help founders move quickly, but the product still has to earn attention. This page tracks real products and submitted apps built with Cursor.",
     sections: [
       { heading: "What we look for", body: "We care less about how fast the code came together and more about whether the app is clear, useful, safe, and likely to retain real users." },
-      { heading: "Submit a Cursor-built app", body: "If you built with Cursor, send the product through the Tally form. We will look at what is clear, what is confusing, and whether the app gives people a reason to return." }
+      { heading: "Submit a Cursor-built app", body: "If you built with Cursor, send the product through the submission page. We will look at what is clear, what is confusing, and whether the app gives people a reason to return." }
     ]
   },
   {
@@ -618,7 +902,7 @@ export const seoPages: SeoPage[] = [
     intro: "Built something with AI? Send it in. Vibe Rater reviews real submitted apps and keeps the feedback direct enough to be useful.",
     sections: [
       { heading: "What to include", body: "Send the app name, founder name, links, tools used, stage, and screenshots if you have them. Do not worry if it is messy. Most real products are." },
-      { heading: "What happens next", body: "Submissions go through Tally. If the founding cohort is full, new submissions are still accepted but treated as waitlist interest rather than a promised free review." }
+      { heading: "What happens next", body: "Submissions go into the Vibe Rater review queue. If the founding cohort is full, new submissions are still accepted but treated as waitlist interest rather than a promised free review." }
     ]
   },
   {
@@ -707,7 +991,7 @@ export const seoPages: SeoPage[] = [
     intro: "AI founder interviews should be more than victory laps. Vibe Rater wants the mistake, the lesson, and the part that almost broke the founder's brain.",
     sections: [
       { heading: "What we ask", body: "Why they built it, what tools they used, what went wrong, what users misunderstood, and what they would fix next." },
-      { heading: "How to be considered", body: "Submit your app through Tally. Interviews may become a paid format later, but right now the focus is finding builders with something real to say." }
+      { heading: "How to be considered", body: "Submit your app through the review queue. Interviews may become a paid format later, but right now the focus is finding builders with something real to say." }
     ]
   }
 ];
@@ -722,6 +1006,10 @@ export function getFounder(slug: string) {
 
 export function getArticle(slug: string) {
   return articles.find((article) => article.slug === slug);
+}
+
+export function getEditorialArticle(slug: string) {
+  return editorialArticles.find((article) => article.slug === slug);
 }
 
 export function getCategoryPage(slug: string) {

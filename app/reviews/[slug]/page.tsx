@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { existsSync, readdirSync } from "fs";
 import path from "path";
 import { Band, ShipLog } from "@/components/ui";
-import { calculateVibeScore, getReview, publishedReviews, scoreKeys, scoreLabel, scoreLabels, siteUrl, verdictLabel } from "@/lib/content";
+import { calculateVibeScore, getReview, publishedReviews, scoreLabel, siteUrl, verdictLabel } from "@/lib/content";
 import type { Screenshot } from "@/lib/content";
 
 const screenshotExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
@@ -53,7 +53,15 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
   if (!review) notFound();
 
   const vibeScore = calculateVibeScore(review.scores);
-  const scoreRows = scoreKeys.map((key) => [scoreLabels[key], review.scores[key]] as const);
+  const scoreRows = [
+    ["Product", Number(((review.scores.productClarity + review.scores.usefulness) / 2).toFixed(1))],
+    ["Positioning", Number(((review.scores.productClarity + review.scores.differentiation) / 2).toFixed(1))],
+    ["Design", review.scores.designUx],
+    ["Distribution", review.scores.differentiation],
+    ["Monetization", review.scores.monetizationPotential],
+    ["Retention", review.scores.retentionPotential],
+    ["Overall Vibe Score", vibeScore]
+  ] as const;
   const screenshots = getReviewScreenshots(review.slug, review.appName, review.screenshots);
 
   return (

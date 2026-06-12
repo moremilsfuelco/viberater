@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LogoMark } from "@/components/ui";
-import { tallyUrl } from "@/lib/content";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -37,10 +36,10 @@ export const metadata: Metadata = {
 
 const nav = [
   ["Reviews", "/reviews"],
+  ["Roasts", "/startup-roasts"],
+  ["Breakdowns", "/founder-breakdowns"],
+  ["Distribution", "/distribution"],
   ["Articles", "/articles"],
-  ["Founders", "/founders"],
-  ["Vibe Score", "/vibe-score"],
-  ["Best Apps", "/best-vibe-coded-apps"],
   ["Newsletter", "/newsletter"]
 ];
 
@@ -67,8 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
               ))}
             </nav>
-            <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="rounded-md bg-paper px-4 py-2 text-sm font-bold text-ink transition hover:bg-acid">
-              Submit Your App
+            <Link href="/submit" className="rounded-md bg-paper px-4 py-2 text-sm font-bold text-ink transition hover:bg-acid">
+              Submit Your Startup
             </Link>
           </div>
         </header>
@@ -83,20 +82,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/what-is-vibe-coding">What is vibe coding?</Link>
               <Link href="/best-vibe-coding-tools">Best vibe coding tools</Link>
               <Link href="/apps-built-with-ai">Apps built with AI</Link>
+              <Link href="/ai-built-apps">AI-built apps</Link>
               <Link href="/apps-built-with-claude-code">Apps built with Claude Code</Link>
               <Link href="/apps-built-with-lovable">Apps built with Lovable</Link>
             </div>
             <div className="flex flex-col gap-2">
-              <Link href="/roast-my-app">Roast My App</Link>
+              <Link href="/startup-roasts">Startup roasts</Link>
+              <Link href="/founder-breakdowns">Founder breakdowns</Link>
               <Link href="/ai-app-review-site">AI app review site</Link>
-              <Link href="/app-launch-teardowns">App launch teardowns</Link>
-              <Link href="/building-in-public">Building in public</Link>
-              <Link href="/founder-stories">Founder stories</Link>
+              <Link href="/app-store-lessons">App Store lessons</Link>
+              <Link href="/distribution">Distribution</Link>
             </div>
             <div className="flex flex-col gap-2">
               <Link href="/about">About</Link>
               <Link href="/newsletter">Newsletter</Link>
-              <Link href={tallyUrl} target="_blank" rel="noopener noreferrer">Submit your app</Link>
+              <Link href="/submit">Submit your startup</Link>
+              <Link href="/vibe-score">Vibe Score</Link>
             </div>
           </div>
         </footer>

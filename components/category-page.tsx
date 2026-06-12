@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Band, ReviewCard, SectionHeader } from "@/components/ui";
-import { buildingProjects, categoryPages, getCategoryPage, publishedReviews, tallyUrl } from "@/lib/content";
+import { buildingProjects, categoryPages, getCategoryPage, publishedReviews } from "@/lib/content";
 
 export function categoryMetadata(slug: string) {
   const page = getCategoryPage(slug);
@@ -69,7 +69,7 @@ export function CategoryPage({ slug }: { slug: string }) {
         )}
         <div className="mt-8 rounded-lg border border-line bg-ember p-6 text-ink">
           <h2 className="font-display text-3xl font-black">Know an app that belongs here?</h2>
-          <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex rounded-md bg-ink px-5 py-3 text-sm font-bold text-paper">Submit it</Link>
+          <Link href="/submit" className="mt-4 inline-flex rounded-md bg-ink px-5 py-3 text-sm font-bold text-paper">Submit it</Link>
         </div>
       </Band>
     </main>

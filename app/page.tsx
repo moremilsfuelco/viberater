@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Band, FounderSubmissionCard, FoundingCohortStatus, NewsletterSignup, ReviewCard, ScorePanel, SectionHeader, ShipLog, SubmitAppButton } from "@/components/ui";
-import { articles, buildingProjects, calculateVibeScore, founders, morganBio, publishedReviews, scoreLabel, tallyUrl, verdictLabel } from "@/lib/content";
+import { articles, buildingProjects, calculateVibeScore, editorialArticles, founders, morganBio, publishedReviews, scoreLabel, verdictLabel } from "@/lib/content";
 
 export default function Home() {
   const topRated = [...publishedReviews].sort((a, b) => calculateVibeScore(b.scores) - calculateVibeScore(a.scores)).slice(0, 4);
@@ -10,6 +10,14 @@ export default function Home() {
   const featuredArticle = articles[0];
   const hasFeaturedArticle = Boolean(featuredArticle?.body?.trim());
   const tools = ["Lovable", "Claude Code", "Bolt", "Cursor", "Replit", "Supabase"];
+  const mediaSections = [
+    ["Founder Breakdowns", "/founder-breakdowns", "The decisions, mistakes, and lessons behind the product."],
+    ["App Store Lessons", "/app-store-lessons", "Launch pain, rejected builds, screenshots, subscriptions, and mobile reality."],
+    ["AI-Built Apps", "/ai-built-apps", "Apps built with the new AI stack, judged like actual products."],
+    ["Startup Roasts", "/startup-roasts", "Blunt positioning feedback that gives founders something worth sharing."],
+    ["Distribution & Marketing", "/distribution", "The part after shipping where most apps quietly get humbled."]
+  ];
+  const latestEditorial = editorialArticles.slice(0, 3);
 
   return (
     <main>
@@ -27,18 +35,18 @@ export default function Home() {
             <div className="py-4">
               <p className="text-xs font-bold uppercase tracking-[0.28em] text-acid">Discover the next generation of AI-built startups before everyone else.</p>
               <h1 className="mt-5 max-w-4xl font-display text-5xl font-black leading-[0.95] tracking-tight text-balance text-paper md:text-7xl">
-              We rate the apps people built with vibes.
+                Brutally honest app reviews, startup breakdowns, and founder lessons.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-paper/[0.76]">
-                Vibe Rater is a founder-first publication reviewing AI-built apps, documenting the reality of building with AI tools, and helping founders create products people actually use.
+                Vibe Rater is a media company and review platform for founders who want sharper positioning, useful feedback, and a public feature that does more than sit in a launch thread for six hours.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <SubmitAppButton className="rounded-md bg-acid px-5 py-3 text-center text-sm font-bold text-ink transition hover:bg-paper" />
-                <Link href="/reviews" className="rounded-md border border-line bg-white/[0.08] px-5 py-3 text-center text-sm font-bold text-paper transition hover:border-paper/[0.40]">Read Reviews</Link>
+                <SubmitAppButton className="rounded-md bg-acid px-5 py-3 text-center text-sm font-bold text-ink transition hover:bg-paper" label="Submit your startup" />
+                <Link href="/reviews" className="rounded-md border border-line bg-white/[0.08] px-5 py-3 text-center text-sm font-bold text-paper transition hover:border-paper/[0.40]">Read the latest reviews</Link>
               </div>
               <div className="mt-8 grid max-w-2xl gap-3 text-sm text-paper/[0.68] sm:grid-cols-3">
                 <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">{publishedReviews.length}</strong>Launch review</div>
-                <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">8-part</strong>Vibe Score</div>
+                <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">7-part</strong>Vibe Score</div>
                 <div className="border-l border-line pl-4"><strong className="block font-display text-2xl text-paper">0</strong>Invented revenue claims</div>
               </div>
               <div className="mt-8 max-w-2xl">
@@ -78,11 +86,48 @@ export default function Home() {
       ) : null}
 
       <Band>
-        <SectionHeader kicker="Launch Reviews" title="The first apps on the board" body="RaceIQ is the first published review. The next spots are for founders building something real enough to take feedback." />
+        <SectionHeader kicker="Latest Reviews" title="The first apps on the board" body="RaceIQ is the first published review. The next spots are for founders building something real enough to take feedback." />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {publishedReviews.map((review) => <ReviewCard key={review.slug} review={review} />)}
           <FounderSubmissionCard />
           <FounderSubmissionCard />
+        </div>
+      </Band>
+
+      <Band className="bg-white/[0.035]">
+        <SectionHeader kicker="Editorial" title="What Vibe Rater covers" body="Not just submissions. Vibe Rater is building a media surface for the messy middle of app launches, AI-built startups, and founders trying to get people to care." />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {mediaSections.map(([title, href, body]) => (
+            <Link key={href} href={href} className="rounded-lg border border-line bg-ink p-5 transition hover:-translate-y-1 hover:border-acid/[0.48]">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-acid">{title}</p>
+              <p className="mt-4 text-sm leading-6 text-paper/[0.68]">{body}</p>
+            </Link>
+          ))}
+        </div>
+      </Band>
+
+      <Band>
+        <SectionHeader kicker="Founder Incentive" title="Why submit?" body="Because a quiet product with no feedback is a terrible place to be. A public Vibe Rater feature gives founders more useful material to work with." />
+        <div className="grid gap-4 md:grid-cols-5">
+          {["Get honest feedback", "Earn a backlink", "Get social proof", "Reach founders/builders", "Improve your positioning"].map((item) => (
+            <div key={item} className="rounded-lg border border-line bg-white/[0.045] p-4">
+              <p className="font-bold text-paper">{item}</p>
+            </div>
+          ))}
+        </div>
+        <Link href="/submit" className="mt-6 inline-flex rounded-md bg-acid px-5 py-3 text-sm font-bold text-ink transition hover:bg-paper">Submit your startup</Link>
+      </Band>
+
+      <Band className="bg-white/[0.035]">
+        <SectionHeader kicker="Draft Queue" title="Founder lessons coming next" body="The first content queue is already aimed at distribution, App Store pain, and the part after AI makes the first build possible." />
+        <div className="grid gap-4 md:grid-cols-3">
+          {latestEditorial.map((article) => (
+            <Link key={article.slug} href={article.status === "published" ? `/articles/${article.slug}` : "/submit"} className="rounded-lg border border-line bg-ink p-5 transition hover:border-acid/[0.48]">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-pool">{article.category} · {article.status}</p>
+              <h3 className="mt-3 font-display text-2xl font-bold">{article.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-paper/[0.66]">{article.excerpt}</p>
+            </Link>
+          ))}
         </div>
       </Band>
 
@@ -122,7 +167,7 @@ export default function Home() {
             </div>
             <Link href={`/founders/${spotlight.slug}`} className="mt-6 inline-flex text-sm font-bold text-acid">Read profile</Link>
           </div>
-          <ShipLog items={["Cut the pretend founder stuff before launch.", "Swapped the old submit flow for the live Tally form.", "Reworked Vibe Rater around real projects and founder submissions.", "Kept the reviews grounded: no invented revenue, traction, or founder stories."]} />
+          <ShipLog items={["Cut the pretend founder stuff before launch.", "Opened a real founder submission queue.", "Reworked Vibe Rater around real projects and founder submissions.", "Kept the reviews grounded: no invented revenue, traction, or founder stories."]} />
         </div>
       </Band>
 
@@ -152,7 +197,7 @@ export default function Home() {
         <div className="rounded-lg border border-line bg-ember p-8 text-ink md:p-10">
           <h2 className="font-display text-4xl font-black tracking-tight">Built something with AI? Submit it for review.</h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/[0.75]">Founders building with Claude Code, Codex, Lovable, Replit, Bolt, Cursor, Supabase, Expo, RevenueCat, and the rest of the new stack belong here.</p>
-          <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex rounded-md bg-ink px-5 py-3 text-sm font-bold text-paper">Submit Your App</Link>
+          <Link href="/submit" className="mt-6 inline-flex rounded-md bg-ink px-5 py-3 text-sm font-bold text-paper">Submit Your Startup</Link>
         </div>
       </Band>
     </main>

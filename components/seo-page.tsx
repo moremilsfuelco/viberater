@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Band, FoundingCohortStatus } from "@/components/ui";
-import { beehiivUrl, seoPages, SeoPage, tallyUrl } from "@/lib/content";
+import { beehiivUrl, seoPages, SeoPage } from "@/lib/content";
 
 const coreLinks = [
-  ["Submit Your App", tallyUrl, true],
+  ["Submit Your Startup", "/submit", false],
   ["Vibe Score", "/vibe-score", false],
   ["Articles", "/articles", false],
   ["Reviews", "/reviews", false],
@@ -72,8 +72,8 @@ export function SeoLandingPage({ page }: { page: SeoPage }) {
             <div className="rounded-lg border border-line bg-ember p-5 text-ink">
               <h2 className="font-display text-2xl font-black">Built something with AI?</h2>
               <p className="mt-2 text-sm leading-6 text-ink/[0.74]">Submit it for a review that says the quiet part out loud.</p>
-              <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex rounded-md bg-ink px-4 py-3 text-sm font-bold text-paper">
-                Submit Your App
+              <Link href="/submit" className="mt-4 inline-flex rounded-md bg-ink px-4 py-3 text-sm font-bold text-paper">
+                Submit Your Startup
               </Link>
             </div>
             <div className="rounded-lg border border-line bg-paper p-5 text-ink">

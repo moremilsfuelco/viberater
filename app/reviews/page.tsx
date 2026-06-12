@@ -10,9 +10,9 @@ export default function ReviewsPage() {
   return (
     <main>
       <Band>
-        <SectionHeader kicker="Directory" title="Vibe-Coded App Reviews" body="Every review starts with the same question: would a real person understand this, use it, trust it, and come back? Then we get into what’s promising, what’s risky, and what the founder should fix next." />
+        <SectionHeader kicker="Latest Reviews" title="Brutally honest app reviews" body="Every review starts with the same question: would a real person understand this, use it, trust it, and come back? Then we get into what’s promising, what’s risky, and what the founder should fix next." />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {publishedReviews.map((review) => <ReviewCard key={review.slug} review={review} />)}
+          {publishedReviews.length ? publishedReviews.map((review) => <ReviewCard key={review.slug} review={review} />) : null}
           <FounderSubmissionCard />
           <FounderSubmissionCard />
         </div>

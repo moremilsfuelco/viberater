@@ -4,7 +4,7 @@ import { calculateVibeScore, publishedReviews, scoreLabel, verdictLabel } from "
 
 export const metadata = {
   title: "Launch Review Scores",
-  description: "Current Vibe Rater launch reviews scored by the Vibe Score framework."
+  description: "Current Vibe Rater launch reviews scored by Vibe Score."
 };
 
 export default function RankingsPage() {
