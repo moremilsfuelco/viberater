@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   },
   description: "Honest reviews, founder stories, launch breakdowns, and rankings for AI-built startups.",
   keywords: ["best vibe coded apps", "vibe coded app reviews", "indie ai startups", "ai founder stories", "vibe coding startups"],
+  verification: {
+    google: "u25XuN1T4hUKbLhY1gq0EdxS8_GX2okSOG-OGR1vF-Q"
+  },
   openGraph: {
     title: "Vibe Rater",
     description: "Discover the next generation of AI-built startups before everyone else.",
