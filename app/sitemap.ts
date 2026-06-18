@@ -24,12 +24,13 @@ const staticRoutes = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const publishedEditorialArticles = editorialArticles.filter((article) => article.status === "published");
   const routes = [
     ...staticRoutes.map((route) => `${siteUrl}/${route}`.replace(/\/$/, "")),
     ...editorialIndexes.map((page) => `${siteUrl}/${page.slug}`),
     ...seoPages.map((page) => `${siteUrl}/${page.slug}`),
     ...articles.map((article) => `${siteUrl}/articles/${article.slug}`),
-    ...editorialArticles.map((article) => `${siteUrl}/articles/${article.slug}`),
+    ...publishedEditorialArticles.map((article) => `${siteUrl}/articles/${article.slug}`),
     ...founders.map((founder) => `${siteUrl}/founders/${founder.slug}`),
     ...publishedReviews.map((review) => `${siteUrl}/reviews/${review.slug}`)
   ];

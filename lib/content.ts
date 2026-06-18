@@ -171,7 +171,7 @@ export type SeoPage = {
 };
 
 export const morganBio =
-  "Morgan Mitchell is a software engineer, runner, and indie founder building AI-powered products in public. Current projects include RaceIQ, HydroPal, DoughBuddy, Athlo, ClaimCheck, BeanQuest, DiscMode, and Vibe Rater. Vibe Rater exists to review AI-built apps, document the reality of building with AI tools, and help founders create products people actually use.";
+  "Morgan Mitchell is a software engineer, runner, and indie founder behind Vibe Rater. Vibe Rater exists to review AI-built apps, document what it actually takes to ship, and help founders create products people use.";
 
 export const scoringFramework = [
   ["Product", "Is the app clear, useful, and close enough to a real problem?"],
@@ -288,7 +288,7 @@ export const reviews: Review[] = [
     founderName: "Morgan Mitchell",
     whatItDoes: "HydroPal is a hydration companion for turning daily water habits into a lighter ritual.",
     excerpt: "HydroPal is instantly understandable, which is good. It is also in a category where every phone already knows how to nag you, which is less good.",
-    stage: "Currently being built",
+    stage: "Unpublished",
     category: "AI wellness",
     tools: ["Lovable", "Cursor", "Supabase"],
     screenshots: [],
@@ -344,7 +344,7 @@ export const reviews: Review[] = [
     founderName: "Morgan Mitchell",
     whatItDoes: "DoughBuddy is AI help for home bakers trying to make better bread without a spreadsheet.",
     excerpt: "DoughBuddy works because bread people are already obsessive in exactly the way software people understand. The trick is making the advice tested enough to earn trust.",
-    stage: "Currently being built",
+    stage: "Unpublished",
     category: "AI food",
     tools: ["Claude Code", "Next.js", "Supabase"],
     screenshots: [],
@@ -370,7 +370,7 @@ export const reviews: Review[] = [
     risk: ["Recipe hallucinations can ruin trust.", "The app needs tested guidance, not endless recipe churn."],
     monetizationNotes: "DoughBuddy could monetize through premium recipe systems, baking logs, classes, or practical troubleshooting if the guidance becomes credible.",
     retentionNotes: "Retention improves if bakers can track past bakes, compare results, and build confidence over time.",
-    distributionIdeas: "Publish build-in-public bake logs, show before-and-after attempts, and recruit serious hobby bakers as early testers.",
+    distributionIdeas: "Publish real bake logs, show before-and-after attempts, and recruit serious hobby bakers as early testers.",
     founderAdvice: "Make the first loop about saving one bake. A single better loaf is stronger proof than a large recipe database.",
     finalVerdict: "DoughBuddy has strong potential because it is specific, tactile, and naturally content-rich.",
     narrative: {
@@ -409,15 +409,7 @@ export const founders: Founder[] = [
   }
 ];
 
-export const buildingProjects: BuildingProject[] = [
-  { name: "RaceIQ", status: "Live on the App Store", description: "AI-powered race preparation and training intelligence for runners.", tools: ["Expo", "Codex", "RevenueCat", "Supabase"] },
-  { name: "HydroPal", status: "Currently being built", description: "A hydration companion focused on daily habit formation.", tools: ["Lovable", "Cursor", "Supabase"] },
-  { name: "DoughBuddy", status: "Currently being built", description: "AI help for home bakers improving bread, recipes, and baking logs.", tools: ["Claude Code", "Next.js", "Supabase"] },
-  { name: "Athlo", status: "Currently being built", description: "A sports and fitness product in the Vibe Rater build-in-public portfolio.", tools: ["Replit", "Expo", "Codex"] },
-  { name: "ClaimCheck", status: "Currently being built", description: "A product exploring clearer workflows around claims, documents, and stressful admin tasks.", tools: ["Bolt", "Claude Code", "Supabase"] },
-  { name: "BeanQuest", status: "Currently being built", description: "A coffee discovery app for finding better cafes and local recommendations.", tools: ["Expo", "RevenueCat", "Google Places", "Codex"] },
-  { name: "DiscMode", status: "Currently being built", description: "A music and discovery project in the public build portfolio.", tools: ["Expo", "Codex"] }
-];
+export const buildingProjects: BuildingProject[] = [];
 
 export const articles: Article[] = [
   {
@@ -426,7 +418,7 @@ export const articles: Article[] = [
     author: "Morgan Mitchell",
     authorSlug: "morgan-mitchell",
     date: "2026-06-10",
-    category: "Building in Public",
+    category: "Founder Lessons",
     excerpt: "Morgan Mitchell on building eight apps with AI, getting humbled by Apple, and learning that shipping is the only part that tells the truth.",
     body: `# I Built 8 Apps With AI and Somehow That's Not Even the Dumbest Thing I've Done This Year
 
@@ -503,7 +495,7 @@ export const newsletterIssues = [
     founderOfWeek: "Morgan Mitchell",
     articleSlug: "i-built-8-apps-with-ai",
     toolOfWeek: "Codex",
-    building: "Vibe Rater is live with a submit form, a Vibe Score, and the first Morgan Mitchell build-in-public story."
+    building: "Vibe Rater is live with a submit form, a Vibe Score, and the first Morgan Mitchell founder essay."
   }
 ];
 
@@ -544,7 +536,7 @@ export const editorialTemplates: Array<{
   },
   {
     name: "AI Builder Diary",
-    description: "A build-in-public entry about what actually happened while shipping with AI tools.",
+    description: "A founder diary about what actually happened while shipping with AI tools.",
     sections: ["What I tried", "What broke", "What worked", "What I am doing next"]
   },
   {
@@ -560,7 +552,7 @@ export const editorialArticles: EditorialArticle[] = [
     slug: "i-built-8-apps-with-ai",
     excerpt: "The real story behind the first Vibe Rater founder essay: shipping got easier, getting people to care did not.",
     category: "AI Builder Diary",
-    tags: ["AI-built apps", "distribution", "building in public"],
+    tags: ["AI-built apps", "distribution", "founder lessons"],
     founderName: "Morgan Mitchell",
     appName: "Vibe Rater",
     template: "AI Builder Diary",
@@ -570,114 +562,6 @@ export const editorialArticles: EditorialArticle[] = [
     bodySections: [
       { heading: "Published essay", body: "This essay is live in the Vibe Rater article archive." }
     ]
-  },
-  {
-    title: "Build It and They Will Come Is Terrible Startup Advice",
-    slug: "build-it-and-they-will-come-is-terrible-startup-advice",
-    excerpt: "A draft about why shipping the product is only the first problem.",
-    category: "Distribution & Marketing",
-    tags: ["distribution", "startup advice"],
-    template: "Why X Failed",
-    status: "draft",
-    seoTitle: "Build It and They Will Come Is Terrible Startup Advice",
-    seoDescription: "A Vibe Rater draft on why founders need distribution before the product gets ignored.",
-    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
-  },
-  {
-    title: "Your App Doesn’t Have a Feature Problem. It Has a Distribution Problem.",
-    slug: "your-app-doesnt-have-a-feature-problem",
-    excerpt: "A draft on the trap of adding features instead of finding users.",
-    category: "Distribution & Marketing",
-    tags: ["distribution", "positioning"],
-    template: "Why X Failed",
-    status: "draft",
-    seoTitle: "Your App Has a Distribution Problem",
-    seoDescription: "A founder-focused article about why more features rarely fix a missing distribution loop.",
-    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
-  },
-  {
-    title: "The App Store Is Not a Marketing Plan",
-    slug: "the-app-store-is-not-a-marketing-plan",
-    excerpt: "A draft for founders who think approval means attention.",
-    category: "App Store Lessons",
-    tags: ["App Store", "mobile apps"],
-    template: "App Store Lessons",
-    status: "draft",
-    seoTitle: "The App Store Is Not a Marketing Plan",
-    seoDescription: "A Vibe Rater draft about why App Store approval is not the same thing as distribution.",
-    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
-  },
-  {
-    title: "Why Your First 100 Users Are Harder Than Building The Product",
-    slug: "why-your-first-100-users-are-harder",
-    excerpt: "A draft about the painfully manual part after launch.",
-    category: "Founder Breakdowns",
-    tags: ["first users", "founder lessons"],
-    template: "Founder Breakdown",
-    status: "draft",
-    seoTitle: "Why Your First 100 Users Are Harder Than Building The Product",
-    seoDescription: "A founder breakdown on getting early users after the product exists.",
-    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
-  },
-  {
-    title: "AI Made Building Easy. It Did Not Make Distribution Easy",
-    slug: "ai-made-building-easy-not-distribution",
-    excerpt: "A draft about what AI tools changed and what they definitely did not.",
-    category: "AI-Built Apps",
-    tags: ["AI tools", "distribution"],
-    template: "AI Builder Diary",
-    status: "draft",
-    seoTitle: "AI Made Building Easy. Distribution Is Still Hard.",
-    seoDescription: "A Vibe Rater draft on the new AI builder stack and the old distribution problem.",
-    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
-  },
-  {
-    title: "Everyone Wants Passive Income Until They Have To Get Customers",
-    slug: "everyone-wants-passive-income-until-customers",
-    excerpt: "A draft on the part of indie software nobody wants to put in the screenshot.",
-    category: "Distribution & Marketing",
-    tags: ["customers", "indie apps"],
-    template: "Why X Failed",
-    status: "draft",
-    seoTitle: "Everyone Wants Passive Income Until They Have To Get Customers",
-    seoDescription: "A blunt Vibe Rater draft about customers, distribution, and the passive income fantasy.",
-    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
-  },
-  {
-    title: "I Thought Coding Was The Hard Part. I Was Wrong.",
-    slug: "i-thought-coding-was-the-hard-part",
-    excerpt: "A draft about what happens after the app compiles.",
-    category: "AI Builder Diary",
-    tags: ["shipping", "AI builders"],
-    template: "AI Builder Diary",
-    status: "draft",
-    seoTitle: "I Thought Coding Was The Hard Part. I Was Wrong.",
-    seoDescription: "A Vibe Rater draft on why shipping, marketing, and retention hurt more than code.",
-    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
-  },
-  {
-    title: "How To Make People Care About Your App",
-    slug: "how-to-make-people-care-about-your-app",
-    excerpt: "A draft about positioning, proof, and getting out of your own product bubble.",
-    category: "Founder Breakdowns",
-    tags: ["positioning", "marketing"],
-    template: "Founder Breakdown",
-    status: "draft",
-    seoTitle: "How To Make People Care About Your App",
-    seoDescription: "A Vibe Rater draft about positioning an app so real users understand why it matters.",
-    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
-  },
-  {
-    title: "Why Founders Should Ask For Roasts, Not Compliments",
-    slug: "why-founders-should-ask-for-roasts",
-    excerpt: "A draft about why useful criticism beats polite launch replies.",
-    category: "Startup Roasts",
-    tags: ["roasts", "feedback"],
-    template: "Startup Roast",
-    status: "draft",
-    seoTitle: "Why Founders Should Ask For Roasts, Not Compliments",
-    seoDescription: "A Vibe Rater draft on why founders need sharper feedback before they waste another launch.",
-    bodySections: [{ heading: "Draft", body: "Draft brief. Full essay will be written before publishing." }]
   }
 ];
 
@@ -739,7 +623,7 @@ export function getEditorialIndex(slug: string) {
 }
 
 export function getEditorialArticlesByCategory(category: string) {
-  return editorialArticles.filter((article) => article.category === category);
+  return editorialArticles.filter((article) => article.status === "published" && article.category === category);
 }
 
 export const internalFutureReviewOffers: ReviewOffer[] = [
@@ -920,11 +804,11 @@ export const seoPages: SeoPage[] = [
   {
     slug: "ai-startup-directory",
     title: "AI Startup Directory",
-    description: "A directory for AI-built startups, reviewed apps, and products built in public.",
+    description: "A directory for AI-built startups, reviewed apps, and submitted products.",
     h1: "AI Startup Directory",
     intro: "The Vibe Rater directory is starting small on purpose: real projects, real submissions, and no made-up rankings.",
     sections: [
-      { heading: "What appears here", body: "Reviewed apps, submitted products, founder stories, and build-in-public projects will show up here as the site grows." },
+      { heading: "What appears here", body: "Reviewed apps, submitted products, and founder stories will show up here as the site grows." },
       { heading: "Why this matters", body: "AI-built startups need more than launch hype. They need feedback, discoverability, and honest context about what is actually working." }
     ]
   },
@@ -942,11 +826,11 @@ export const seoPages: SeoPage[] = [
   {
     slug: "founder-stories",
     title: "Founder Stories",
-    description: "Founder stories from AI builders, indie makers, and people shipping software in public.",
+    description: "Founder stories from AI builders, indie makers, and people shipping real software.",
     h1: "Founder Stories",
     intro: "Vibe Rater founder stories focus on what actually happened: the product, the mistakes, the weird launch moments, and the lessons that did not fit in a polished Twitter thread.",
     sections: [
-      { heading: "Current founder story", body: "The launch founder story is Morgan Mitchell, the founder of Vibe Rater and builder of RaceIQ, HydroPal, DoughBuddy, Athlo, ClaimCheck, BeanQuest, DiscMode, and Vibe Rater." },
+      { heading: "Current founder story", body: "The launch founder story is Morgan Mitchell, the founder of Vibe Rater and builder of RaceIQ." },
       { heading: "Future stories", body: "New stories will come from builders who submit real products. Otherwise there is nothing worth publishing." }
     ]
   },
@@ -970,17 +854,6 @@ export const seoPages: SeoPage[] = [
     sections: [
       { heading: "Why they matter", body: "Rejections expose messy store copy, broken flows, privacy gaps, subscription confusion, and assumptions founders did not know they were making." },
       { heading: "What Vibe Rater covers", body: "We cover what broke, what fixed it, and what the next founder can avoid." }
-    ]
-  },
-  {
-    slug: "building-in-public",
-    title: "Building in Public",
-    description: "Build-in-public notes from Vibe Rater and people shipping AI-built apps.",
-    h1: "Building in Public",
-    intro: "Building in public is not just posting wins. It is admitting when Apple rejects the build, Reddit hates the post, or the feature you loved makes no sense to users.",
-    sections: [
-      { heading: "What gets shared", body: "Vibe Rater shares founder stories, product reviews, launch notes, App Store lessons, and the unglamorous parts of shipping." },
-      { heading: "Current build portfolio", body: "RaceIQ is live on the App Store. Morgan Mitchell is also building HydroPal, DoughBuddy, Athlo, ClaimCheck, BeanQuest, DiscMode, and Vibe Rater in public." }
     ]
   },
   {
@@ -1009,7 +882,7 @@ export function getArticle(slug: string) {
 }
 
 export function getEditorialArticle(slug: string) {
-  return editorialArticles.find((article) => article.slug === slug);
+  return editorialArticles.find((article) => article.status === "published" && article.slug === slug);
 }
 
 export function getCategoryPage(slug: string) {

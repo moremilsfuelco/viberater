@@ -47,17 +47,12 @@ export function EditorialIndexPage({ slug }: { slug: string }) {
 }
 
 export function EditorialCard({ article }: { article: EditorialArticle }) {
-  const href = article.status === "published" && article.slug === "i-built-8-apps-with-ai"
-    ? "/articles/i-built-8-apps-with-ai"
-    : tallyUrl;
+  const href = article.slug === "i-built-8-apps-with-ai" ? "/articles/i-built-8-apps-with-ai" : tallyUrl;
 
   return (
     <Link href={href} target={href === tallyUrl ? "_blank" : undefined} rel={href === tallyUrl ? "noopener noreferrer" : undefined} className="group block rounded-lg border border-line bg-white/[0.045] p-5 shadow-glow transition hover:-translate-y-1 hover:border-acid/[0.42]">
       <div className="flex flex-wrap items-center gap-2">
         <span className="rounded-full border border-line px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-paper/[0.54]">{article.category}</span>
-        <span className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] ${article.status === "published" ? "bg-acid text-ink" : "bg-white/[0.08] text-paper/[0.52]"}`}>
-          {article.status}
-        </span>
       </div>
       <h2 className="mt-4 font-display text-2xl font-bold tracking-tight text-paper group-hover:text-acid">{article.title}</h2>
       <p className="mt-3 text-sm leading-6 text-paper/[0.66]">{article.excerpt}</p>

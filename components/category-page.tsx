@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Band, ReviewCard, SectionHeader } from "@/components/ui";
-import { buildingProjects, categoryPages, getCategoryPage, publishedReviews, tallyUrl } from "@/lib/content";
+import { categoryPages, getCategoryPage, publishedReviews, tallyUrl } from "@/lib/content";
 
 export function categoryMetadata(slug: string) {
   const page = getCategoryPage(slug);
@@ -24,15 +24,6 @@ export function CategoryPage({ slug }: { slug: string }) {
     return true;
   });
 
-  const relatedProjects = buildingProjects.filter((project) => {
-    if (slug.includes("fitness")) return ["RaceIQ", "Athlo"].includes(project.name);
-    if (slug.includes("productivity")) return project.name === "ClaimCheck";
-    if (slug.includes("lovable")) return project.tools.includes("Lovable");
-    if (slug.includes("claude")) return project.tools.includes("Claude Code");
-    if (slug.includes("replit")) return project.tools.includes("Replit");
-    return true;
-  });
-
   return (
     <main>
       <Band>
@@ -52,19 +43,11 @@ export function CategoryPage({ slug }: { slug: string }) {
             {filtered.map((review) => <ReviewCard key={review.slug} review={review} />)}
           </div>
         ) : (
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {relatedProjects.map((project) => (
-              <article key={project.name} className="rounded-lg border border-line bg-white/[0.045] p-5">
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-acid">{project.status}</p>
-                <h2 className="mt-3 font-display text-2xl font-bold">{project.name}</h2>
-                <p className="mt-4 text-sm leading-6 text-paper/[0.68]">{project.description}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.tools.map((tool) => (
-                    <span key={tool} className="rounded-full border border-line px-3 py-1 text-xs text-paper/[0.70]">{tool}</span>
-                  ))}
-                </div>
-              </article>
-            ))}
+          <div className="mt-8 rounded-lg border border-dashed border-acid/[0.45] bg-acid/[0.08] p-6">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-acid">Founder submission</p>
+            <h2 className="mt-3 font-display text-3xl font-black">This list needs real startups.</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-paper/[0.70]">No filler cards, no fake rankings, no personal portfolio padding. Submit a real app and we’ll add useful coverage when there’s something worth publishing.</p>
+            <Link href={tallyUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-md bg-acid px-5 py-3 text-sm font-bold text-ink">Submit your startup</Link>
           </div>
         )}
         <div className="mt-8 rounded-lg border border-line bg-ember p-6 text-ink">

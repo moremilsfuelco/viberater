@@ -5,7 +5,8 @@ import { Band } from "@/components/ui";
 import { articles, editorialArticles, getArticle, getEditorialArticle, siteUrl } from "@/lib/content";
 
 export function generateStaticParams() {
-  return Array.from(new Set([...articles, ...editorialArticles].map((article) => article.slug))).map((slug) => ({ slug }));
+  const publishedEditorialArticles = editorialArticles.filter((article) => article.status === "published");
+  return Array.from(new Set([...articles, ...publishedEditorialArticles].map((article) => article.slug))).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -55,7 +56,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     <main>
       <Band>
         <article className="mx-auto max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-pool">{article?.category ?? editorial!.category}{article ? ` · ${article.date}` : ` · ${editorial!.status}`}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-pool">{article?.category ?? editorial!.category}{article ? ` · ${article.date}` : ""}</p>
           {article ? <p className="mt-5 text-sm font-bold text-acid">By <Link href={`/founders/${article.authorSlug}`}>{article.author}</Link></p> : null}
           <div className="mt-10 space-y-6 rounded-lg border border-line bg-white/[0.045] p-6">
             {article ? <ArticleBody body={article.body} /> : <EditorialBody article={editorial!} />}
@@ -71,11 +72,6 @@ function EditorialBody({ article }: { article: NonNullable<ReturnType<typeof get
     <>
       <h1 className="font-display text-5xl font-black leading-[0.96] tracking-tight text-balance">{article.title}</h1>
       <p className="text-base leading-8 text-paper/[0.78]">{article.excerpt}</p>
-      {article.status === "draft" ? (
-        <p className="rounded-md border border-line bg-black/[0.20] p-4 text-sm font-semibold leading-6 text-paper/[0.70]">
-          This piece is in the editorial queue. The working title and structure are live so founders can see what Vibe Rater is building toward.
-        </p>
-      ) : null}
       {article.bodySections.map((section) => (
         <section key={section.heading}>
           <h2 className="font-display text-3xl font-bold">{section.heading}</h2>

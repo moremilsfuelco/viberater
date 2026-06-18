@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Band, FounderSubmissionCard, FoundingCohortStatus, NewsletterSignup, ReviewCard, ScorePanel, SectionHeader, ShipLog, SubmitAppButton } from "@/components/ui";
-import { articles, buildingProjects, calculateVibeScore, editorialArticles, founders, morganBio, publishedReviews, scoreLabel, tallyUrl, verdictLabel } from "@/lib/content";
+import { articles, calculateVibeScore, founders, morganBio, publishedReviews, scoreLabel, tallyUrl, verdictLabel } from "@/lib/content";
 
 export default function Home() {
   const topRated = [...publishedReviews].sort((a, b) => calculateVibeScore(b.scores) - calculateVibeScore(a.scores)).slice(0, 4);
@@ -17,7 +17,6 @@ export default function Home() {
     ["Startup Roasts", "/startup-roasts", "Blunt positioning feedback that gives founders something worth sharing."],
     ["Distribution & Marketing", "/distribution", "The part after shipping where most apps quietly get humbled."]
   ];
-  const latestEditorial = editorialArticles.slice(0, 3);
 
   return (
     <main>
@@ -119,19 +118,6 @@ export default function Home() {
       </Band>
 
       <Band className="bg-white/[0.035]">
-        <SectionHeader kicker="Draft Queue" title="Founder lessons coming next" body="The first content queue is already aimed at distribution, App Store pain, and the part after AI makes the first build possible." />
-        <div className="grid gap-4 md:grid-cols-3">
-          {latestEditorial.map((article) => (
-            <Link key={article.slug} href={article.status === "published" ? `/articles/${article.slug}` : tallyUrl} target={article.status === "published" ? undefined : "_blank"} rel={article.status === "published" ? undefined : "noopener noreferrer"} className="rounded-lg border border-line bg-ink p-5 transition hover:border-acid/[0.48]">
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-pool">{article.category} · {article.status}</p>
-              <h3 className="mt-3 font-display text-2xl font-bold">{article.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-paper/[0.66]">{article.excerpt}</p>
-            </Link>
-          ))}
-        </div>
-      </Band>
-
-      <Band className="bg-white/[0.035]">
         <SectionHeader kicker="Vibe Score" title="What the score means" body="A Vibe Score is the quick read on whether an app is clear, useful, trustworthy, and worth opening again. It is not a revenue claim. It is not a victory lap." />
         <div className="grid gap-4 md:grid-cols-4">
           {topRated.map((review, index) => {
@@ -168,24 +154,6 @@ export default function Home() {
             <Link href={`/founders/${spotlight.slug}`} className="mt-6 inline-flex text-sm font-bold text-acid">Read profile</Link>
           </div>
           <ShipLog items={["Cut the pretend founder stuff before launch.", "Opened a real founder submission queue.", "Reworked Vibe Rater around real projects and founder submissions.", "Kept the reviews grounded: no invented revenue, traction, or founder stories."]} />
-        </div>
-      </Band>
-
-      <Band className="bg-white/[0.035]">
-        <SectionHeader kicker="Building in Public" title="Projects in the Vibe Rater orbit" body="RaceIQ is live on the App Store and is the only published launch review. The rest are still being built in public." />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {buildingProjects.map((project) => (
-            <article key={project.name} className="rounded-lg border border-line bg-ink p-5">
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-acid">{project.status}</p>
-              <h3 className="mt-3 font-display text-2xl font-bold">{project.name}</h3>
-              <p className="mt-3 text-sm leading-6 text-paper/[0.68]">{project.description}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {project.tools.map((tool) => (
-                  <span key={tool} className="rounded-full border border-line px-3 py-1 text-xs text-paper/[0.70]">{tool}</span>
-                ))}
-              </div>
-            </article>
-          ))}
         </div>
       </Band>
 
